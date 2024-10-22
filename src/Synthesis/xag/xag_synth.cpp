@@ -5,6 +5,7 @@
 #include "tweedledum/Synthesis/xag_synth.h"
 #include "HighLevelXAG.h"
 #include "tweedledum/Operators/Extension/Parity.h"
+#include "tweedledum/Operators/Standard/Rx.h"
 #include "tweedledum/Operators/Standard/X.h"
 
 #include <cassert>
@@ -284,7 +285,7 @@ void Synthesizer::compute_node(Circuit& circuit, Qubit target,
     Qubit c0 = node.is_negated(0) ? !in0.back() : in0.back();
     Qubit c1 = node.is_negated(1) ? !in1.back() : in1.back();
     if (cleanup_.at(ref) == 1) {
-        circuit.apply_operator(Op::X(), {c0, c1, target}, cbits_);
+        circuit.apply_operator(Op::Rx(numbers::pi), {c0, c1, target}, cbits_);
     } else {
         circuit.apply_operator(Op::X(), {c0, c1, target}, cbits_);
     }
@@ -351,7 +352,7 @@ void Synthesizer::cleanup_node(Circuit& circuit, Qubit target,
     // Compute Toffoli
     Qubit c0 = node.is_negated(0) ? !in0.back() : in0.back();
     Qubit c1 = node.is_negated(1) ? !in1.back() : in1.back();
-    circuit.apply_operator(Op::X(), {c0, c1, target}, cbits_);
+    circuit.apply_operator(Op::Rx(-numbers::pi), {c0, c1, target}, cbits_);
     // fmt::print(">>>>>>>> C\n");
     // Cleanup the input to the Toffoli gate
     add_parity(circuit, in1);
