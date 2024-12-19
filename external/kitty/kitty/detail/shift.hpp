@@ -45,826 +45,1519 @@ namespace detail
 // https://github.com/NikolajBjorner/z3/blob/17a256eca1a375f023bb98c3e4e728845d92dfb2/src/ast/expr_network.cpp#L22
 inline uint64_t compute_shift(uint64_t x, unsigned code) {
     switch (code) {
-#define _x0 (x & 1)
-#define _x1 _x0
-    case 1: return _x1;
-#define _x2 (_x1 | (_x1 << 1))
-    case 2: return _x2;
-#define _x3 (x & 3)
-#define _x4 _x3
-    case 3: return _x4;
-#define _x5 (_x2 | (_x2 << 2))
-    case 4: return _x5;
-#define _x6 (_x4 | (_x4 << 2))
-    case 5: return _x6;
-#define _x7 (x & 2)
-#define _x8 (_x7 << 1)
-#define _x9 (_x8 | (_x8 << 1))
-#define _x10 (_x2 | _x9)
-    case 6: return _x10;
-#define _x11 (x & 15)
-#define _x12 _x11
-    case 7: return _x12;
-#define _x13 (_x5 | (_x5 << 4))
-    case 8: return _x13;
-#define _x14 (_x6 | (_x6 << 4))
-    case 9: return _x14;
-#define _x15 (_x10 | (_x10 << 4))
-    case 10: return _x15;
-#define _x16 (_x12 | (_x12 << 4))
-    case 11: return _x16;
-#define _x17 (_x7 << 3)
-#define _x18 (_x17 | (_x17 << 1))
-#define _x19 (_x18 | (_x18 << 2))
-#define _x20 (_x5 | _x19)
-    case 12: return _x20;
-#define _x21 (x & 12)
-#define _x22 (_x21 << 2)
-#define _x23 (_x22 | (_x22 << 2))
-#define _x24 (_x6 | _x23)
-    case 13: return _x24;
-#define _x25 (x & 4)
-#define _x26 (_x25 << 2)
-#define _x27 (_x26 | (_x26 << 1))
-#define _x28 (x & 8)
-#define _x29 (_x28 << 3)
-#define _x30 (_x29 | (_x29 << 1))
-#define _x31 (_x27 | _x30)
-#define _x32 (_x10 | _x31)
-    case 14: return _x32;
-#define _x33 (x & 255)
-#define _x34 _x33
-    case 15: return _x34;
-#define _x35 (_x13 | (_x13 << 8))
-    case 16: return _x35;
-#define _x36 (_x14 | (_x14 << 8))
-    case 17: return _x36;
-#define _x37 (_x15 | (_x15 << 8))
-    case 18: return _x37;
-#define _x38 (_x16 | (_x16 << 8))
-    case 19: return _x38;
-#define _x39 (_x20 | (_x20 << 8))
-    case 20: return _x39;
-#define _x40 (_x24 | (_x24 << 8))
-    case 21: return _x40;
-#define _x41 (_x32 | (_x32 << 8))
-    case 22: return _x41;
-#define _x42 (_x34 | (_x34 << 8))
-    case 23: return _x42;
-#define _x43 (_x7 << 7)
-#define _x44 (_x43 | (_x43 << 1))
-#define _x45 (_x44 | (_x44 << 2))
-#define _x46 (_x45 | (_x45 << 4))
-#define _x47 (_x13 | _x46)
-    case 24: return _x47;
-#define _x48 (_x21 << 6)
-#define _x49 (_x48 | (_x48 << 2))
-#define _x50 (_x49 | (_x49 << 4))
-#define _x51 (_x14 | _x50)
-    case 25: return _x51;
-#define _x52 (_x25 << 6)
-#define _x53 (_x52 | (_x52 << 1))
-#define _x54 (_x28 << 7)
-#define _x55 (_x54 | (_x54 << 1))
-#define _x56 (_x53 | _x55)
-#define _x57 (_x56 | (_x56 << 4))
-#define _x58 (_x15 | _x57)
-    case 26: return _x58;
-#define _x59 (x & 240)
-#define _x60 (_x59 << 4)
-#define _x61 (_x60 | (_x60 << 4))
-#define _x62 (_x16 | _x61)
-    case 27: return _x62;
-#define _x63 (_x53 | (_x53 << 2))
-#define _x64 (_x28 << 9)
-#define _x65 (_x64 | (_x64 << 1))
-#define _x66 (_x65 | (_x65 << 2))
-#define _x67 (_x63 | _x66)
-#define _x68 (_x20 | _x67)
-    case 28: return _x68;
-#define _x69 (x & 48)
-#define _x70 (_x69 << 4)
-#define _x71 (_x70 | (_x70 << 2))
-#define _x72 (x & 192)
-#define _x73 (_x72 << 6)
-#define _x74 (_x73 | (_x73 << 2))
-#define _x75 (_x71 | _x74)
-#define _x76 (_x24 | _x75)
-    case 29: return _x76;
-#define _x77 (x & 16)
-#define _x78 (_x77 << 4)
-#define _x79 (_x78 | (_x78 << 1))
-#define _x80 (x & 32)
-#define _x81 (_x80 << 5)
-#define _x82 (_x81 | (_x81 << 1))
-#define _x83 (_x79 | _x82)
-#define _x84 (x & 64)
-#define _x85 (_x84 << 6)
-#define _x86 (_x85 | (_x85 << 1))
-#define _x87 (x & 128)
-#define _x88 (_x87 << 7)
-#define _x89 (_x88 | (_x88 << 1))
-#define _x90 (_x86 | _x89)
-#define _x91 (_x83 | _x90)
-#define _x92 (_x32 | _x91)
-    case 30: return _x92;
-#define _x93 (x & 65535)
-#define _x94 _x93
-    case 31: return _x94;
-#define _x95 (_x35 | (_x35 << 16))
-    case 32: return _x95;
-#define _x96 (_x36 | (_x36 << 16))
-    case 33: return _x96;
-#define _x97 (_x37 | (_x37 << 16))
-    case 34: return _x97;
-#define _x98 (_x38 | (_x38 << 16))
-    case 35: return _x98;
-#define _x99 (_x39 | (_x39 << 16))
-    case 36: return _x99;
-#define _x100 (_x40 | (_x40 << 16))
-    case 37: return _x100;
-#define _x101 (_x41 | (_x41 << 16))
-    case 38: return _x101;
-#define _x102 (_x42 | (_x42 << 16))
-    case 39: return _x102;
-#define _x103 (_x47 | (_x47 << 16))
-    case 40: return _x103;
-#define _x104 (_x51 | (_x51 << 16))
-    case 41: return _x104;
-#define _x105 (_x58 | (_x58 << 16))
-    case 42: return _x105;
-#define _x106 (_x62 | (_x62 << 16))
-    case 43: return _x106;
-#define _x107 (_x68 | (_x68 << 16))
-    case 44: return _x107;
-#define _x108 (_x76 | (_x76 << 16))
-    case 45: return _x108;
-#define _x109 (_x92 | (_x92 << 16))
-    case 46: return _x109;
-#define _x110 (_x94 | (_x94 << 16))
-    case 47: return _x110;
-#define _x111 (_x7 << 15)
-#define _x112 (_x111 | (_x111 << 1))
-#define _x113 (_x112 | (_x112 << 2))
-#define _x114 (_x113 | (_x113 << 4))
-#define _x115 (_x114 | (_x114 << 8))
-#define _x116 (_x35 | _x115)
-    case 48: return _x116;
-#define _x117 (_x21 << 14)
-#define _x118 (_x117 | (_x117 << 2))
-#define _x119 (_x118 | (_x118 << 4))
-#define _x120 (_x119 | (_x119 << 8))
-#define _x121 (_x36 | _x120)
-    case 49: return _x121;
-#define _x122 (_x25 << 14)
-#define _x123 (_x122 | (_x122 << 1))
-#define _x124 (_x28 << 15)
-#define _x125 (_x124 | (_x124 << 1))
-#define _x126 (_x123 | _x125)
-#define _x127 (_x126 | (_x126 << 4))
-#define _x128 (_x127 | (_x127 << 8))
-#define _x129 (_x37 | _x128)
-    case 50: return _x129;
-#define _x130 (_x59 << 12)
-#define _x131 (_x130 | (_x130 << 4))
-#define _x132 (_x131 | (_x131 << 8))
-#define _x133 (_x38 | _x132)
-    case 51: return _x133;
-#define _x134 (_x123 | (_x123 << 2))
-#define _x135 (_x28 << 17)
-#define _x136 (_x135 | (_x135 << 1))
-#define _x137 (_x136 | (_x136 << 2))
-#define _x138 (_x134 | _x137)
-#define _x139 (_x138 | (_x138 << 8))
-#define _x140 (_x39 | _x139)
-    case 52: return _x140;
-#define _x141 (_x69 << 12)
-#define _x142 (_x141 | (_x141 << 2))
-#define _x143 (_x72 << 14)
-#define _x144 (_x143 | (_x143 << 2))
-#define _x145 (_x142 | _x144)
-#define _x146 (_x145 | (_x145 << 8))
-#define _x147 (_x40 | _x146)
-    case 53: return _x147;
-#define _x148 (_x77 << 12)
-#define _x149 (_x148 | (_x148 << 1))
-#define _x150 (_x80 << 13)
-#define _x151 (_x150 | (_x150 << 1))
-#define _x152 (_x149 | _x151)
-#define _x153 (_x84 << 14)
-#define _x154 (_x153 | (_x153 << 1))
-#define _x155 (_x87 << 15)
-#define _x156 (_x155 | (_x155 << 1))
-#define _x157 (_x154 | _x156)
-#define _x158 (_x152 | _x157)
-#define _x159 (_x158 | (_x158 << 8))
-#define _x160 (_x41 | _x159)
-    case 54: return _x160;
-#define _x161 (x & 65280)
-#define _x162 (_x161 << 8)
-#define _x163 (_x162 | (_x162 << 8))
-#define _x164 (_x42 | _x163)
-    case 55: return _x164;
-#define _x165 (_x134 | (_x134 << 4))
-#define _x166 (_x28 << 21)
-#define _x167 (_x166 | (_x166 << 1))
-#define _x168 (_x167 | (_x167 << 2))
-#define _x169 (_x168 | (_x168 << 4))
-#define _x170 (_x165 | _x169)
-#define _x171 (_x47 | _x170)
-    case 56: return _x171;
-#define _x172 (_x142 | (_x142 << 4))
-#define _x173 (_x72 << 18)
-#define _x174 (_x173 | (_x173 << 2))
-#define _x175 (_x174 | (_x174 << 4))
-#define _x176 (_x172 | _x175)
-#define _x177 (_x51 | _x176)
-    case 57: return _x177;
-#define _x178 (_x152 | (_x152 << 4))
-#define _x179 (_x84 << 18)
-#define _x180 (_x179 | (_x179 << 1))
-#define _x181 (_x87 << 19)
-#define _x182 (_x181 | (_x181 << 1))
-#define _x183 (_x180 | _x182)
-#define _x184 (_x183 | (_x183 << 4))
-#define _x185 (_x178 | _x184)
-#define _x186 (_x58 | _x185)
-    case 58: return _x186;
-#define _x187 (x & 3840)
-#define _x188 (_x187 << 8)
-#define _x189 (_x188 | (_x188 << 4))
-#define _x190 (x & 61440)
-#define _x191 (_x190 << 12)
-#define _x192 (_x191 | (_x191 << 4))
-#define _x193 (_x189 | _x192)
-#define _x194 (_x62 | _x193)
-    case 59: return _x194;
-#define _x195 (_x149 | (_x149 << 2))
-#define _x196 (_x80 << 15)
-#define _x197 (_x196 | (_x196 << 1))
-#define _x198 (_x197 | (_x197 << 2))
-#define _x199 (_x195 | _x198)
-#define _x200 (_x180 | (_x180 << 2))
-#define _x201 (_x87 << 21)
-#define _x202 (_x201 | (_x201 << 1))
-#define _x203 (_x202 | (_x202 << 2))
-#define _x204 (_x200 | _x203)
-#define _x205 (_x199 | _x204)
-#define _x206 (_x68 | _x205)
-    case 60: return _x206;
-#define _x207 (x & 768)
-#define _x208 (_x207 << 8)
-#define _x209 (_x208 | (_x208 << 2))
-#define _x210 (x & 3072)
-#define _x211 (_x210 << 10)
-#define _x212 (_x211 | (_x211 << 2))
-#define _x213 (_x209 | _x212)
-#define _x214 (x & 12288)
-#define _x215 (_x214 << 12)
-#define _x216 (_x215 | (_x215 << 2))
-#define _x217 (x & 49152)
-#define _x218 (_x217 << 14)
-#define _x219 (_x218 | (_x218 << 2))
-#define _x220 (_x216 | _x219)
-#define _x221 (_x213 | _x220)
-#define _x222 (_x76 | _x221)
-    case 61: return _x222;
-#define _x223 (x & 256)
-#define _x224 (_x223 << 8)
-#define _x225 (_x224 | (_x224 << 1))
-#define _x226 (x & 512)
-#define _x227 (_x226 << 9)
-#define _x228 (_x227 | (_x227 << 1))
-#define _x229 (_x225 | _x228)
-#define _x230 (x & 1024)
-#define _x231 (_x230 << 10)
-#define _x232 (_x231 | (_x231 << 1))
-#define _x233 (x & 2048)
-#define _x234 (_x233 << 11)
-#define _x235 (_x234 | (_x234 << 1))
-#define _x236 (_x232 | _x235)
-#define _x237 (_x229 | _x236)
-#define _x238 (x & 4096)
-#define _x239 (_x238 << 12)
-#define _x240 (_x239 | (_x239 << 1))
-#define _x241 (x & 8192)
-#define _x242 (_x241 << 13)
-#define _x243 (_x242 | (_x242 << 1))
-#define _x244 (_x240 | _x243)
-#define _x245 (x & 16384)
-#define _x246 (_x245 << 14)
-#define _x247 (_x246 | (_x246 << 1))
-#define _x248 (x & 32768)
-#define _x249 (_x248 << 15)
-#define _x250 (_x249 | (_x249 << 1))
-#define _x251 (_x247 | _x250)
-#define _x252 (_x244 | _x251)
-#define _x253 (_x237 | _x252)
-#define _x254 (_x92 | _x253)
-    case 62: return _x254;
-#define _x255 (x & 4294967295)
-#define _x256 _x255
-    case 63: return _x256;
-#define _x257 (_x95 | (_x95 << 32))
-    case 64: return _x257;
-#define _x258 (_x96 | (_x96 << 32))
-    case 65: return _x258;
-#define _x259 (_x97 | (_x97 << 32))
-    case 66: return _x259;
-#define _x260 (_x98 | (_x98 << 32))
-    case 67: return _x260;
-#define _x261 (_x99 | (_x99 << 32))
-    case 68: return _x261;
-#define _x262 (_x100 | (_x100 << 32))
-    case 69: return _x262;
-#define _x263 (_x101 | (_x101 << 32))
-    case 70: return _x263;
-#define _x264 (_x102 | (_x102 << 32))
-    case 71: return _x264;
-#define _x265 (_x103 | (_x103 << 32))
-    case 72: return _x265;
-#define _x266 (_x104 | (_x104 << 32))
-    case 73: return _x266;
-#define _x267 (_x105 | (_x105 << 32))
-    case 74: return _x267;
-#define _x268 (_x106 | (_x106 << 32))
-    case 75: return _x268;
-#define _x269 (_x107 | (_x107 << 32))
-    case 76: return _x269;
-#define _x270 (_x108 | (_x108 << 32))
-    case 77: return _x270;
-#define _x271 (_x109 | (_x109 << 32))
-    case 78: return _x271;
-#define _x272 (_x110 | (_x110 << 32))
-    case 79: return _x272;
-#define _x273 (_x116 | (_x116 << 32))
-    case 80: return _x273;
-#define _x274 (_x121 | (_x121 << 32))
-    case 81: return _x274;
-#define _x275 (_x129 | (_x129 << 32))
-    case 82: return _x275;
-#define _x276 (_x133 | (_x133 << 32))
-    case 83: return _x276;
-#define _x277 (_x140 | (_x140 << 32))
-    case 84: return _x277;
-#define _x278 (_x147 | (_x147 << 32))
-    case 85: return _x278;
-#define _x279 (_x160 | (_x160 << 32))
-    case 86: return _x279;
-#define _x280 (_x164 | (_x164 << 32))
-    case 87: return _x280;
-#define _x281 (_x171 | (_x171 << 32))
-    case 88: return _x281;
-#define _x282 (_x177 | (_x177 << 32))
-    case 89: return _x282;
-#define _x283 (_x186 | (_x186 << 32))
-    case 90: return _x283;
-#define _x284 (_x194 | (_x194 << 32))
-    case 91: return _x284;
-#define _x285 (_x206 | (_x206 << 32))
-    case 92: return _x285;
-#define _x286 (_x222 | (_x222 << 32))
-    case 93: return _x286;
-#define _x287 (_x254 | (_x254 << 32))
-    case 94: return _x287;
-#define _x288 (_x256 | (_x256 << 32))
-    case 95: return _x288;
-#define _x289 (_x7 << 31)
-#define _x290 (_x289 | (_x289 << 1))
-#define _x291 (_x290 | (_x290 << 2))
-#define _x292 (_x291 | (_x291 << 4))
-#define _x293 (_x292 | (_x292 << 8))
-#define _x294 (_x293 | (_x293 << 16))
-#define _x295 (_x95 | _x294)
-    case 96: return _x295;
-#define _x296 (_x21 << 30)
-#define _x297 (_x296 | (_x296 << 2))
-#define _x298 (_x297 | (_x297 << 4))
-#define _x299 (_x298 | (_x298 << 8))
-#define _x300 (_x299 | (_x299 << 16))
-#define _x301 (_x96 | _x300)
-    case 97: return _x301;
-#define _x302 (_x25 << 30)
-#define _x303 (_x302 | (_x302 << 1))
-#define _x304 (_x28 << 31)
-#define _x305 (_x304 | (_x304 << 1))
-#define _x306 (_x303 | _x305)
-#define _x307 (_x306 | (_x306 << 4))
-#define _x308 (_x307 | (_x307 << 8))
-#define _x309 (_x308 | (_x308 << 16))
-#define _x310 (_x97 | _x309)
-    case 98: return _x310;
-#define _x311 (_x59 << 28)
-#define _x312 (_x311 | (_x311 << 4))
-#define _x313 (_x312 | (_x312 << 8))
-#define _x314 (_x313 | (_x313 << 16))
-#define _x315 (_x98 | _x314)
-    case 99: return _x315;
-#define _x316 (_x303 | (_x303 << 2))
-#define _x317 (_x28 << 33)
-#define _x318 (_x317 | (_x317 << 1))
-#define _x319 (_x318 | (_x318 << 2))
-#define _x320 (_x316 | _x319)
-#define _x321 (_x320 | (_x320 << 8))
-#define _x322 (_x321 | (_x321 << 16))
-#define _x323 (_x99 | _x322)
-    case 100: return _x323;
-#define _x324 (_x69 << 28)
-#define _x325 (_x324 | (_x324 << 2))
-#define _x326 (_x72 << 30)
-#define _x327 (_x326 | (_x326 << 2))
-#define _x328 (_x325 | _x327)
-#define _x329 (_x328 | (_x328 << 8))
-#define _x330 (_x329 | (_x329 << 16))
-#define _x331 (_x100 | _x330)
-    case 101: return _x331;
-#define _x332 (_x77 << 28)
-#define _x333 (_x332 | (_x332 << 1))
-#define _x334 (_x80 << 29)
-#define _x335 (_x334 | (_x334 << 1))
-#define _x336 (_x333 | _x335)
-#define _x337 (_x84 << 30)
-#define _x338 (_x337 | (_x337 << 1))
-#define _x339 (_x87 << 31)
-#define _x340 (_x339 | (_x339 << 1))
-#define _x341 (_x338 | _x340)
-#define _x342 (_x336 | _x341)
-#define _x343 (_x342 | (_x342 << 8))
-#define _x344 (_x343 | (_x343 << 16))
-#define _x345 (_x101 | _x344)
-    case 102: return _x345;
-#define _x346 (_x161 << 24)
-#define _x347 (_x346 | (_x346 << 8))
-#define _x348 (_x347 | (_x347 << 16))
-#define _x349 (_x102 | _x348)
-    case 103: return _x349;
-#define _x350 (_x316 | (_x316 << 4))
-#define _x351 (_x28 << 37)
-#define _x352 (_x351 | (_x351 << 1))
-#define _x353 (_x352 | (_x352 << 2))
-#define _x354 (_x353 | (_x353 << 4))
-#define _x355 (_x350 | _x354)
-#define _x356 (_x355 | (_x355 << 16))
-#define _x357 (_x103 | _x356)
-    case 104: return _x357;
-#define _x358 (_x325 | (_x325 << 4))
-#define _x359 (_x72 << 34)
-#define _x360 (_x359 | (_x359 << 2))
-#define _x361 (_x360 | (_x360 << 4))
-#define _x362 (_x358 | _x361)
-#define _x363 (_x362 | (_x362 << 16))
-#define _x364 (_x104 | _x363)
-    case 105: return _x364;
-#define _x365 (_x336 | (_x336 << 4))
-#define _x366 (_x84 << 34)
-#define _x367 (_x366 | (_x366 << 1))
-#define _x368 (_x87 << 35)
-#define _x369 (_x368 | (_x368 << 1))
-#define _x370 (_x367 | _x369)
-#define _x371 (_x370 | (_x370 << 4))
-#define _x372 (_x365 | _x371)
-#define _x373 (_x372 | (_x372 << 16))
-#define _x374 (_x105 | _x373)
-    case 106: return _x374;
-#define _x375 (_x187 << 24)
-#define _x376 (_x375 | (_x375 << 4))
-#define _x377 (_x190 << 28)
-#define _x378 (_x377 | (_x377 << 4))
-#define _x379 (_x376 | _x378)
-#define _x380 (_x379 | (_x379 << 16))
-#define _x381 (_x106 | _x380)
-    case 107: return _x381;
-#define _x382 (_x333 | (_x333 << 2))
-#define _x383 (_x80 << 31)
-#define _x384 (_x383 | (_x383 << 1))
-#define _x385 (_x384 | (_x384 << 2))
-#define _x386 (_x382 | _x385)
-#define _x387 (_x367 | (_x367 << 2))
-#define _x388 (_x87 << 37)
-#define _x389 (_x388 | (_x388 << 1))
-#define _x390 (_x389 | (_x389 << 2))
-#define _x391 (_x387 | _x390)
-#define _x392 (_x386 | _x391)
-#define _x393 (_x392 | (_x392 << 16))
-#define _x394 (_x107 | _x393)
-    case 108: return _x394;
-#define _x395 (_x207 << 24)
-#define _x396 (_x395 | (_x395 << 2))
-#define _x397 (_x210 << 26)
-#define _x398 (_x397 | (_x397 << 2))
-#define _x399 (_x396 | _x398)
-#define _x400 (_x214 << 28)
-#define _x401 (_x400 | (_x400 << 2))
-#define _x402 (_x217 << 30)
-#define _x403 (_x402 | (_x402 << 2))
-#define _x404 (_x401 | _x403)
-#define _x405 (_x399 | _x404)
-#define _x406 (_x405 | (_x405 << 16))
-#define _x407 (_x108 | _x406)
-    case 109: return _x407;
-#define _x408 (_x223 << 24)
-#define _x409 (_x408 | (_x408 << 1))
-#define _x410 (_x226 << 25)
-#define _x411 (_x410 | (_x410 << 1))
-#define _x412 (_x409 | _x411)
-#define _x413 (_x230 << 26)
-#define _x414 (_x413 | (_x413 << 1))
-#define _x415 (_x233 << 27)
-#define _x416 (_x415 | (_x415 << 1))
-#define _x417 (_x414 | _x416)
-#define _x418 (_x412 | _x417)
-#define _x419 (_x238 << 28)
-#define _x420 (_x419 | (_x419 << 1))
-#define _x421 (_x241 << 29)
-#define _x422 (_x421 | (_x421 << 1))
-#define _x423 (_x420 | _x422)
-#define _x424 (_x245 << 30)
-#define _x425 (_x424 | (_x424 << 1))
-#define _x426 (_x248 << 31)
-#define _x427 (_x426 | (_x426 << 1))
-#define _x428 (_x425 | _x427)
-#define _x429 (_x423 | _x428)
-#define _x430 (_x418 | _x429)
-#define _x431 (_x430 | (_x430 << 16))
-#define _x432 (_x109 | _x431)
-    case 110: return _x432;
-#define _x433 (x & 4294901760)
-#define _x434 (_x433 << 16)
-#define _x435 (_x434 | (_x434 << 16))
-#define _x436 (_x110 | _x435)
-    case 111: return _x436;
-#define _x437 (_x350 | (_x350 << 8))
-#define _x438 (_x28 << 45)
-#define _x439 (_x438 | (_x438 << 1))
-#define _x440 (_x439 | (_x439 << 2))
-#define _x441 (_x440 | (_x440 << 4))
-#define _x442 (_x441 | (_x441 << 8))
-#define _x443 (_x437 | _x442)
-#define _x444 (_x116 | _x443)
-    case 112: return _x444;
-#define _x445 (_x358 | (_x358 << 8))
-#define _x446 (_x72 << 42)
-#define _x447 (_x446 | (_x446 << 2))
-#define _x448 (_x447 | (_x447 << 4))
-#define _x449 (_x448 | (_x448 << 8))
-#define _x450 (_x445 | _x449)
-#define _x451 (_x121 | _x450)
-    case 113: return _x451;
-#define _x452 (_x365 | (_x365 << 8))
-#define _x453 (_x84 << 42)
-#define _x454 (_x453 | (_x453 << 1))
-#define _x455 (_x87 << 43)
-#define _x456 (_x455 | (_x455 << 1))
-#define _x457 (_x454 | _x456)
-#define _x458 (_x457 | (_x457 << 4))
-#define _x459 (_x458 | (_x458 << 8))
-#define _x460 (_x452 | _x459)
-#define _x461 (_x129 | _x460)
-    case 114: return _x461;
-#define _x462 (_x376 | (_x376 << 8))
-#define _x463 (_x190 << 36)
-#define _x464 (_x463 | (_x463 << 4))
-#define _x465 (_x464 | (_x464 << 8))
-#define _x466 (_x462 | _x465)
-#define _x467 (_x133 | _x466)
-    case 115: return _x467;
-#define _x468 (_x386 | (_x386 << 8))
-#define _x469 (_x454 | (_x454 << 2))
-#define _x470 (_x87 << 45)
-#define _x471 (_x470 | (_x470 << 1))
-#define _x472 (_x471 | (_x471 << 2))
-#define _x473 (_x469 | _x472)
-#define _x474 (_x473 | (_x473 << 8))
-#define _x475 (_x468 | _x474)
-#define _x476 (_x140 | _x475)
-    case 116: return _x476;
-#define _x477 (_x399 | (_x399 << 8))
-#define _x478 (_x214 << 36)
-#define _x479 (_x478 | (_x478 << 2))
-#define _x480 (_x217 << 38)
-#define _x481 (_x480 | (_x480 << 2))
-#define _x482 (_x479 | _x481)
-#define _x483 (_x482 | (_x482 << 8))
-#define _x484 (_x477 | _x483)
-#define _x485 (_x147 | _x484)
-    case 117: return _x485;
-#define _x486 (_x418 | (_x418 << 8))
-#define _x487 (_x238 << 36)
-#define _x488 (_x487 | (_x487 << 1))
-#define _x489 (_x241 << 37)
-#define _x490 (_x489 | (_x489 << 1))
-#define _x491 (_x488 | _x490)
-#define _x492 (_x245 << 38)
-#define _x493 (_x492 | (_x492 << 1))
-#define _x494 (_x248 << 39)
-#define _x495 (_x494 | (_x494 << 1))
-#define _x496 (_x493 | _x495)
-#define _x497 (_x491 | _x496)
-#define _x498 (_x497 | (_x497 << 8))
-#define _x499 (_x486 | _x498)
-#define _x500 (_x160 | _x499)
-    case 118: return _x500;
-#define _x501 (x & 16711680)
-#define _x502 (_x501 << 16)
-#define _x503 (_x502 | (_x502 << 8))
-#define _x504 (x & 4278190080)
-#define _x505 (_x504 << 24)
-#define _x506 (_x505 | (_x505 << 8))
-#define _x507 (_x503 | _x506)
-#define _x508 (_x164 | _x507)
-    case 119: return _x508;
-#define _x509 (_x382 | (_x382 << 4))
-#define _x510 (_x80 << 35)
-#define _x511 (_x510 | (_x510 << 1))
-#define _x512 (_x511 | (_x511 << 2))
-#define _x513 (_x512 | (_x512 << 4))
-#define _x514 (_x509 | _x513)
-#define _x515 (_x469 | (_x469 << 4))
-#define _x516 (_x87 << 49)
-#define _x517 (_x516 | (_x516 << 1))
-#define _x518 (_x517 | (_x517 << 2))
-#define _x519 (_x518 | (_x518 << 4))
-#define _x520 (_x515 | _x519)
-#define _x521 (_x514 | _x520)
-#define _x522 (_x171 | _x521)
-    case 120: return _x522;
-#define _x523 (_x396 | (_x396 << 4))
-#define _x524 (_x210 << 30)
-#define _x525 (_x524 | (_x524 << 2))
-#define _x526 (_x525 | (_x525 << 4))
-#define _x527 (_x523 | _x526)
-#define _x528 (_x479 | (_x479 << 4))
-#define _x529 (_x217 << 42)
-#define _x530 (_x529 | (_x529 << 2))
-#define _x531 (_x530 | (_x530 << 4))
-#define _x532 (_x528 | _x531)
-#define _x533 (_x527 | _x532)
-#define _x534 (_x177 | _x533)
-    case 121: return _x534;
-#define _x535 (_x412 | (_x412 << 4))
-#define _x536 (_x230 << 30)
-#define _x537 (_x536 | (_x536 << 1))
-#define _x538 (_x233 << 31)
-#define _x539 (_x538 | (_x538 << 1))
-#define _x540 (_x537 | _x539)
-#define _x541 (_x540 | (_x540 << 4))
-#define _x542 (_x535 | _x541)
-#define _x543 (_x491 | (_x491 << 4))
-#define _x544 (_x245 << 42)
-#define _x545 (_x544 | (_x544 << 1))
-#define _x546 (_x248 << 43)
-#define _x547 (_x546 | (_x546 << 1))
-#define _x548 (_x545 | _x547)
-#define _x549 (_x548 | (_x548 << 4))
-#define _x550 (_x543 | _x549)
-#define _x551 (_x542 | _x550)
-#define _x552 (_x186 | _x551)
-    case 122: return _x552;
-#define _x553 (x & 983040)
-#define _x554 (_x553 << 16)
-#define _x555 (_x554 | (_x554 << 4))
-#define _x556 (x & 15728640)
-#define _x557 (_x556 << 20)
-#define _x558 (_x557 | (_x557 << 4))
-#define _x559 (_x555 | _x558)
-#define _x560 (x & 251658240)
-#define _x561 (_x560 << 24)
-#define _x562 (_x561 | (_x561 << 4))
-#define _x563 (x & 4026531840)
-#define _x564 (_x563 << 28)
-#define _x565 (_x564 | (_x564 << 4))
-#define _x566 (_x562 | _x565)
-#define _x567 (_x559 | _x566)
-#define _x568 (_x194 | _x567)
-    case 123: return _x568;
-#define _x569 (_x409 | (_x409 << 2))
-#define _x570 (_x226 << 27)
-#define _x571 (_x570 | (_x570 << 1))
-#define _x572 (_x571 | (_x571 << 2))
-#define _x573 (_x569 | _x572)
-#define _x574 (_x537 | (_x537 << 2))
-#define _x575 (_x233 << 33)
-#define _x576 (_x575 | (_x575 << 1))
-#define _x577 (_x576 | (_x576 << 2))
-#define _x578 (_x574 | _x577)
-#define _x579 (_x573 | _x578)
-#define _x580 (_x488 | (_x488 << 2))
-#define _x581 (_x241 << 39)
-#define _x582 (_x581 | (_x581 << 1))
-#define _x583 (_x582 | (_x582 << 2))
-#define _x584 (_x580 | _x583)
-#define _x585 (_x545 | (_x545 << 2))
-#define _x586 (_x248 << 45)
-#define _x587 (_x586 | (_x586 << 1))
-#define _x588 (_x587 | (_x587 << 2))
-#define _x589 (_x585 | _x588)
-#define _x590 (_x584 | _x589)
-#define _x591 (_x579 | _x590)
-#define _x592 (_x206 | _x591)
-    case 124: return _x592;
-#define _x593 (x & 196608)
-#define _x594 (_x593 << 16)
-#define _x595 (_x594 | (_x594 << 2))
-#define _x596 (x & 786432)
-#define _x597 (_x596 << 18)
-#define _x598 (_x597 | (_x597 << 2))
-#define _x599 (_x595 | _x598)
-#define _x600 (x & 3145728)
-#define _x601 (_x600 << 20)
-#define _x602 (_x601 | (_x601 << 2))
-#define _x603 (x & 12582912)
-#define _x604 (_x603 << 22)
-#define _x605 (_x604 | (_x604 << 2))
-#define _x606 (_x602 | _x605)
-#define _x607 (_x599 | _x606)
-#define _x608 (x & 50331648)
-#define _x609 (_x608 << 24)
-#define _x610 (_x609 | (_x609 << 2))
-#define _x611 (x & 201326592)
-#define _x612 (_x611 << 26)
-#define _x613 (_x612 | (_x612 << 2))
-#define _x614 (_x610 | _x613)
-#define _x615 (x & 805306368)
-#define _x616 (_x615 << 28)
-#define _x617 (_x616 | (_x616 << 2))
-#define _x618 (x & 3221225472)
-#define _x619 (_x618 << 30)
-#define _x620 (_x619 | (_x619 << 2))
-#define _x621 (_x617 | _x620)
-#define _x622 (_x614 | _x621)
-#define _x623 (_x607 | _x622)
-#define _x624 (_x222 | _x623)
-    case 125: return _x624;
-#define _x625 (x & 65536)
-#define _x626 (_x625 << 16)
-#define _x627 (_x626 | (_x626 << 1))
-#define _x628 (x & 131072)
-#define _x629 (_x628 << 17)
-#define _x630 (_x629 | (_x629 << 1))
-#define _x631 (_x627 | _x630)
-#define _x632 (x & 262144)
-#define _x633 (_x632 << 18)
-#define _x634 (_x633 | (_x633 << 1))
-#define _x635 (x & 524288)
-#define _x636 (_x635 << 19)
-#define _x637 (_x636 | (_x636 << 1))
-#define _x638 (_x634 | _x637)
-#define _x639 (_x631 | _x638)
-#define _x640 (x & 1048576)
-#define _x641 (_x640 << 20)
-#define _x642 (_x641 | (_x641 << 1))
-#define _x643 (x & 2097152)
-#define _x644 (_x643 << 21)
-#define _x645 (_x644 | (_x644 << 1))
-#define _x646 (_x642 | _x645)
-#define _x647 (x & 4194304)
-#define _x648 (_x647 << 22)
-#define _x649 (_x648 | (_x648 << 1))
-#define _x650 (x & 8388608)
-#define _x651 (_x650 << 23)
-#define _x652 (_x651 | (_x651 << 1))
-#define _x653 (_x649 | _x652)
-#define _x654 (_x646 | _x653)
-#define _x655 (_x639 | _x654)
-#define _x656 (x & 16777216)
-#define _x657 (_x656 << 24)
-#define _x658 (_x657 | (_x657 << 1))
-#define _x659 (x & 33554432)
-#define _x660 (_x659 << 25)
-#define _x661 (_x660 | (_x660 << 1))
-#define _x662 (_x658 | _x661)
-#define _x663 (x & 67108864)
-#define _x664 (_x663 << 26)
-#define _x665 (_x664 | (_x664 << 1))
-#define _x666 (x & 134217728)
-#define _x667 (_x666 << 27)
-#define _x668 (_x667 | (_x667 << 1))
-#define _x669 (_x665 | _x668)
-#define _x670 (_x662 | _x669)
-#define _x671 (x & 268435456)
-#define _x672 (_x671 << 28)
-#define _x673 (_x672 | (_x672 << 1))
-#define _x674 (x & 536870912)
-#define _x675 (_x674 << 29)
-#define _x676 (_x675 | (_x675 << 1))
-#define _x677 (_x673 | _x676)
-#define _x678 (x & 1073741824)
-#define _x679 (_x678 << 30)
-#define _x680 (_x679 | (_x679 << 1))
-#define _x681 (x & 2147483648)
-#define _x682 (_x681 << 31)
-#define _x683 (_x682 | (_x682 << 1))
-#define _x684 (_x680 | _x683)
-#define _x685 (_x677 | _x684)
-#define _x686 (_x670 | _x685)
-#define _x687 (_x655 | _x686)
-#define _x688 (_x254 | _x687)
-    case 126: return _x688;
+#define HACK_x0 (x & 1)
+#define HACK_x1 HACK_x0
+    case 1: return HACK_x1;
+#define HACK_x2 (HACK_x1 | (HACK_x1 << 1))
+    case 2: return HACK_x2;
+#define HACK_x3 (x & 3)
+#define HACK_x4 HACK_x3
+    case 3: return HACK_x4;
+#define HACK_x5 (HACK_x2 | (HACK_x2 << 2))
+    case 4: return HACK_x5;
+#define HACK_x6 (HACK_x4 | (HACK_x4 << 2))
+    case 5: return HACK_x6;
+#define HACK_x7 (x & 2)
+#define HACK_x8 (HACK_x7 << 1)
+#define HACK_x9 (HACK_x8 | (HACK_x8 << 1))
+#define HACK_x10 (HACK_x2 | HACK_x9)
+    case 6: return HACK_x10;
+#define HACK_x11 (x & 15)
+#define HACK_x12 HACK_x11
+    case 7: return HACK_x12;
+#define HACK_x13 (HACK_x5 | (HACK_x5 << 4))
+    case 8: return HACK_x13;
+#define HACK_x14 (HACK_x6 | (HACK_x6 << 4))
+    case 9: return HACK_x14;
+#define HACK_x15 (HACK_x10 | (HACK_x10 << 4))
+    case 10: return HACK_x15;
+#define HACK_x16 (HACK_x12 | (HACK_x12 << 4))
+    case 11: return HACK_x16;
+#define HACK_x17 (HACK_x7 << 3)
+#define HACK_x18 (HACK_x17 | (HACK_x17 << 1))
+#define HACK_x19 (HACK_x18 | (HACK_x18 << 2))
+#define HACK_x20 (HACK_x5 | HACK_x19)
+    case 12: return HACK_x20;
+#define HACK_x21 (x & 12)
+#define HACK_x22 (HACK_x21 << 2)
+#define HACK_x23 (HACK_x22 | (HACK_x22 << 2))
+#define HACK_x24 (HACK_x6 | HACK_x23)
+    case 13: return HACK_x24;
+#define HACK_x25 (x & 4)
+#define HACK_x26 (HACK_x25 << 2)
+#define HACK_x27 (HACK_x26 | (HACK_x26 << 1))
+#define HACK_x28 (x & 8)
+#define HACK_x29 (HACK_x28 << 3)
+#define HACK_x30 (HACK_x29 | (HACK_x29 << 1))
+#define HACK_x31 (HACK_x27 | HACK_x30)
+#define HACK_x32 (HACK_x10 | HACK_x31)
+    case 14: return HACK_x32;
+#define HACK_x33 (x & 255)
+#define HACK_x34 HACK_x33
+    case 15: return HACK_x34;
+#define HACK_x35 (HACK_x13 | (HACK_x13 << 8))
+    case 16: return HACK_x35;
+#define HACK_x36 (HACK_x14 | (HACK_x14 << 8))
+    case 17: return HACK_x36;
+#define HACK_x37 (HACK_x15 | (HACK_x15 << 8))
+    case 18: return HACK_x37;
+#define HACK_x38 (HACK_x16 | (HACK_x16 << 8))
+    case 19: return HACK_x38;
+#define HACK_x39 (HACK_x20 | (HACK_x20 << 8))
+    case 20: return HACK_x39;
+#define HACK_x40 (HACK_x24 | (HACK_x24 << 8))
+    case 21: return HACK_x40;
+#define HACK_x41 (HACK_x32 | (HACK_x32 << 8))
+    case 22: return HACK_x41;
+#define HACK_x42 (HACK_x34 | (HACK_x34 << 8))
+    case 23: return HACK_x42;
+#define HACK_x43 (HACK_x7 << 7)
+#define HACK_x44 (HACK_x43 | (HACK_x43 << 1))
+#define HACK_x45 (HACK_x44 | (HACK_x44 << 2))
+#define HACK_x46 (HACK_x45 | (HACK_x45 << 4))
+#define HACK_x47 (HACK_x13 | HACK_x46)
+    case 24: return HACK_x47;
+#define HACK_x48 (HACK_x21 << 6)
+#define HACK_x49 (HACK_x48 | (HACK_x48 << 2))
+#define HACK_x50 (HACK_x49 | (HACK_x49 << 4))
+#define HACK_x51 (HACK_x14 | HACK_x50)
+    case 25: return HACK_x51;
+#define HACK_x52 (HACK_x25 << 6)
+#define HACK_x53 (HACK_x52 | (HACK_x52 << 1))
+#define HACK_x54 (HACK_x28 << 7)
+#define HACK_x55 (HACK_x54 | (HACK_x54 << 1))
+#define HACK_x56 (HACK_x53 | HACK_x55)
+#define HACK_x57 (HACK_x56 | (HACK_x56 << 4))
+#define HACK_x58 (HACK_x15 | HACK_x57)
+    case 26: return HACK_x58;
+#define HACK_x59 (x & 240)
+#define HACK_x60 (HACK_x59 << 4)
+#define HACK_x61 (HACK_x60 | (HACK_x60 << 4))
+#define HACK_x62 (HACK_x16 | HACK_x61)
+    case 27: return HACK_x62;
+#define HACK_x63 (HACK_x53 | (HACK_x53 << 2))
+#define HACK_x64 (HACK_x28 << 9)
+#define HACK_x65 (HACK_x64 | (HACK_x64 << 1))
+#define HACK_x66 (HACK_x65 | (HACK_x65 << 2))
+#define HACK_x67 (HACK_x63 | HACK_x66)
+#define HACK_x68 (HACK_x20 | HACK_x67)
+    case 28: return HACK_x68;
+#define HACK_x69 (x & 48)
+#define HACK_x70 (HACK_x69 << 4)
+#define HACK_x71 (HACK_x70 | (HACK_x70 << 2))
+#define HACK_x72 (x & 192)
+#define HACK_x73 (HACK_x72 << 6)
+#define HACK_x74 (HACK_x73 | (HACK_x73 << 2))
+#define HACK_x75 (HACK_x71 | HACK_x74)
+#define HACK_x76 (HACK_x24 | HACK_x75)
+    case 29: return HACK_x76;
+#define HACK_x77 (x & 16)
+#define HACK_x78 (HACK_x77 << 4)
+#define HACK_x79 (HACK_x78 | (HACK_x78 << 1))
+#define HACK_x80 (x & 32)
+#define HACK_x81 (HACK_x80 << 5)
+#define HACK_x82 (HACK_x81 | (HACK_x81 << 1))
+#define HACK_x83 (HACK_x79 | HACK_x82)
+#define HACK_x84 (x & 64)
+#define HACK_x85 (HACK_x84 << 6)
+#define HACK_x86 (HACK_x85 | (HACK_x85 << 1))
+#define HACK_x87 (x & 128)
+#define HACK_x88 (HACK_x87 << 7)
+#define HACK_x89 (HACK_x88 | (HACK_x88 << 1))
+#define HACK_x90 (HACK_x86 | HACK_x89)
+#define HACK_x91 (HACK_x83 | HACK_x90)
+#define HACK_x92 (HACK_x32 | HACK_x91)
+    case 30: return HACK_x92;
+#define HACK_x93 (x & 65535)
+#define HACK_x94 HACK_x93
+    case 31: return HACK_x94;
+#define HACK_x95 (HACK_x35 | (HACK_x35 << 16))
+    case 32: return HACK_x95;
+#define HACK_x96 (HACK_x36 | (HACK_x36 << 16))
+    case 33: return HACK_x96;
+#define HACK_x97 (HACK_x37 | (HACK_x37 << 16))
+    case 34: return HACK_x97;
+#define HACK_x98 (HACK_x38 | (HACK_x38 << 16))
+    case 35: return HACK_x98;
+#define HACK_x99 (HACK_x39 | (HACK_x39 << 16))
+    case 36: return HACK_x99;
+#define HACK_x100 (HACK_x40 | (HACK_x40 << 16))
+    case 37: return HACK_x100;
+#define HACK_x101 (HACK_x41 | (HACK_x41 << 16))
+    case 38: return HACK_x101;
+#define HACK_x102 (HACK_x42 | (HACK_x42 << 16))
+    case 39: return HACK_x102;
+#define HACK_x103 (HACK_x47 | (HACK_x47 << 16))
+    case 40: return HACK_x103;
+#define HACK_x104 (HACK_x51 | (HACK_x51 << 16))
+    case 41: return HACK_x104;
+#define HACK_x105 (HACK_x58 | (HACK_x58 << 16))
+    case 42: return HACK_x105;
+#define HACK_x106 (HACK_x62 | (HACK_x62 << 16))
+    case 43: return HACK_x106;
+#define HACK_x107 (HACK_x68 | (HACK_x68 << 16))
+    case 44: return HACK_x107;
+#define HACK_x108 (HACK_x76 | (HACK_x76 << 16))
+    case 45: return HACK_x108;
+#define HACK_x109 (HACK_x92 | (HACK_x92 << 16))
+    case 46: return HACK_x109;
+#define HACK_x110 (HACK_x94 | (HACK_x94 << 16))
+    case 47: return HACK_x110;
+#define HACK_x111 (HACK_x7 << 15)
+#define HACK_x112 (HACK_x111 | (HACK_x111 << 1))
+#define HACK_x113 (HACK_x112 | (HACK_x112 << 2))
+#define HACK_x114 (HACK_x113 | (HACK_x113 << 4))
+#define HACK_x115 (HACK_x114 | (HACK_x114 << 8))
+#define HACK_x116 (HACK_x35 | HACK_x115)
+    case 48: return HACK_x116;
+#define HACK_x117 (HACK_x21 << 14)
+#define HACK_x118 (HACK_x117 | (HACK_x117 << 2))
+#define HACK_x119 (HACK_x118 | (HACK_x118 << 4))
+#define HACK_x120 (HACK_x119 | (HACK_x119 << 8))
+#define HACK_x121 (HACK_x36 | HACK_x120)
+    case 49: return HACK_x121;
+#define HACK_x122 (HACK_x25 << 14)
+#define HACK_x123 (HACK_x122 | (HACK_x122 << 1))
+#define HACK_x124 (HACK_x28 << 15)
+#define HACK_x125 (HACK_x124 | (HACK_x124 << 1))
+#define HACK_x126 (HACK_x123 | HACK_x125)
+#define HACK_x127 (HACK_x126 | (HACK_x126 << 4))
+#define HACK_x128 (HACK_x127 | (HACK_x127 << 8))
+#define HACK_x129 (HACK_x37 | HACK_x128)
+    case 50: return HACK_x129;
+#define HACK_x130 (HACK_x59 << 12)
+#define HACK_x131 (HACK_x130 | (HACK_x130 << 4))
+#define HACK_x132 (HACK_x131 | (HACK_x131 << 8))
+#define HACK_x133 (HACK_x38 | HACK_x132)
+    case 51: return HACK_x133;
+#define HACK_x134 (HACK_x123 | (HACK_x123 << 2))
+#define HACK_x135 (HACK_x28 << 17)
+#define HACK_x136 (HACK_x135 | (HACK_x135 << 1))
+#define HACK_x137 (HACK_x136 | (HACK_x136 << 2))
+#define HACK_x138 (HACK_x134 | HACK_x137)
+#define HACK_x139 (HACK_x138 | (HACK_x138 << 8))
+#define HACK_x140 (HACK_x39 | HACK_x139)
+    case 52: return HACK_x140;
+#define HACK_x141 (HACK_x69 << 12)
+#define HACK_x142 (HACK_x141 | (HACK_x141 << 2))
+#define HACK_x143 (HACK_x72 << 14)
+#define HACK_x144 (HACK_x143 | (HACK_x143 << 2))
+#define HACK_x145 (HACK_x142 | HACK_x144)
+#define HACK_x146 (HACK_x145 | (HACK_x145 << 8))
+#define HACK_x147 (HACK_x40 | HACK_x146)
+    case 53: return HACK_x147;
+#define HACK_x148 (HACK_x77 << 12)
+#define HACK_x149 (HACK_x148 | (HACK_x148 << 1))
+#define HACK_x150 (HACK_x80 << 13)
+#define HACK_x151 (HACK_x150 | (HACK_x150 << 1))
+#define HACK_x152 (HACK_x149 | HACK_x151)
+#define HACK_x153 (HACK_x84 << 14)
+#define HACK_x154 (HACK_x153 | (HACK_x153 << 1))
+#define HACK_x155 (HACK_x87 << 15)
+#define HACK_x156 (HACK_x155 | (HACK_x155 << 1))
+#define HACK_x157 (HACK_x154 | HACK_x156)
+#define HACK_x158 (HACK_x152 | HACK_x157)
+#define HACK_x159 (HACK_x158 | (HACK_x158 << 8))
+#define HACK_x160 (HACK_x41 | HACK_x159)
+    case 54: return HACK_x160;
+#define HACK_x161 (x & 65280)
+#define HACK_x162 (HACK_x161 << 8)
+#define HACK_x163 (HACK_x162 | (HACK_x162 << 8))
+#define HACK_x164 (HACK_x42 | HACK_x163)
+    case 55: return HACK_x164;
+#define HACK_x165 (HACK_x134 | (HACK_x134 << 4))
+#define HACK_x166 (HACK_x28 << 21)
+#define HACK_x167 (HACK_x166 | (HACK_x166 << 1))
+#define HACK_x168 (HACK_x167 | (HACK_x167 << 2))
+#define HACK_x169 (HACK_x168 | (HACK_x168 << 4))
+#define HACK_x170 (HACK_x165 | HACK_x169)
+#define HACK_x171 (HACK_x47 | HACK_x170)
+    case 56: return HACK_x171;
+#define HACK_x172 (HACK_x142 | (HACK_x142 << 4))
+#define HACK_x173 (HACK_x72 << 18)
+#define HACK_x174 (HACK_x173 | (HACK_x173 << 2))
+#define HACK_x175 (HACK_x174 | (HACK_x174 << 4))
+#define HACK_x176 (HACK_x172 | HACK_x175)
+#define HACK_x177 (HACK_x51 | HACK_x176)
+    case 57: return HACK_x177;
+#define HACK_x178 (HACK_x152 | (HACK_x152 << 4))
+#define HACK_x179 (HACK_x84 << 18)
+#define HACK_x180 (HACK_x179 | (HACK_x179 << 1))
+#define HACK_x181 (HACK_x87 << 19)
+#define HACK_x182 (HACK_x181 | (HACK_x181 << 1))
+#define HACK_x183 (HACK_x180 | HACK_x182)
+#define HACK_x184 (HACK_x183 | (HACK_x183 << 4))
+#define HACK_x185 (HACK_x178 | HACK_x184)
+#define HACK_x186 (HACK_x58 | HACK_x185)
+    case 58: return HACK_x186;
+#define HACK_x187 (x & 3840)
+#define HACK_x188 (HACK_x187 << 8)
+#define HACK_x189 (HACK_x188 | (HACK_x188 << 4))
+#define HACK_x190 (x & 61440)
+#define HACK_x191 (HACK_x190 << 12)
+#define HACK_x192 (HACK_x191 | (HACK_x191 << 4))
+#define HACK_x193 (HACK_x189 | HACK_x192)
+#define HACK_x194 (HACK_x62 | HACK_x193)
+    case 59: return HACK_x194;
+#define HACK_x195 (HACK_x149 | (HACK_x149 << 2))
+#define HACK_x196 (HACK_x80 << 15)
+#define HACK_x197 (HACK_x196 | (HACK_x196 << 1))
+#define HACK_x198 (HACK_x197 | (HACK_x197 << 2))
+#define HACK_x199 (HACK_x195 | HACK_x198)
+#define HACK_x200 (HACK_x180 | (HACK_x180 << 2))
+#define HACK_x201 (HACK_x87 << 21)
+#define HACK_x202 (HACK_x201 | (HACK_x201 << 1))
+#define HACK_x203 (HACK_x202 | (HACK_x202 << 2))
+#define HACK_x204 (HACK_x200 | HACK_x203)
+#define HACK_x205 (HACK_x199 | HACK_x204)
+#define HACK_x206 (HACK_x68 | HACK_x205)
+    case 60: return HACK_x206;
+#define HACK_x207 (x & 768)
+#define HACK_x208 (HACK_x207 << 8)
+#define HACK_x209 (HACK_x208 | (HACK_x208 << 2))
+#define HACK_x210 (x & 3072)
+#define HACK_x211 (HACK_x210 << 10)
+#define HACK_x212 (HACK_x211 | (HACK_x211 << 2))
+#define HACK_x213 (HACK_x209 | HACK_x212)
+#define HACK_x214 (x & 12288)
+#define HACK_x215 (HACK_x214 << 12)
+#define HACK_x216 (HACK_x215 | (HACK_x215 << 2))
+#define HACK_x217 (x & 49152)
+#define HACK_x218 (HACK_x217 << 14)
+#define HACK_x219 (HACK_x218 | (HACK_x218 << 2))
+#define HACK_x220 (HACK_x216 | HACK_x219)
+#define HACK_x221 (HACK_x213 | HACK_x220)
+#define HACK_x222 (HACK_x76 | HACK_x221)
+    case 61: return HACK_x222;
+#define HACK_x223 (x & 256)
+#define HACK_x224 (HACK_x223 << 8)
+#define HACK_x225 (HACK_x224 | (HACK_x224 << 1))
+#define HACK_x226 (x & 512)
+#define HACK_x227 (HACK_x226 << 9)
+#define HACK_x228 (HACK_x227 | (HACK_x227 << 1))
+#define HACK_x229 (HACK_x225 | HACK_x228)
+#define HACK_x230 (x & 1024)
+#define HACK_x231 (HACK_x230 << 10)
+#define HACK_x232 (HACK_x231 | (HACK_x231 << 1))
+#define HACK_x233 (x & 2048)
+#define HACK_x234 (HACK_x233 << 11)
+#define HACK_x235 (HACK_x234 | (HACK_x234 << 1))
+#define HACK_x236 (HACK_x232 | HACK_x235)
+#define HACK_x237 (HACK_x229 | HACK_x236)
+#define HACK_x238 (x & 4096)
+#define HACK_x239 (HACK_x238 << 12)
+#define HACK_x240 (HACK_x239 | (HACK_x239 << 1))
+#define HACK_x241 (x & 8192)
+#define HACK_x242 (HACK_x241 << 13)
+#define HACK_x243 (HACK_x242 | (HACK_x242 << 1))
+#define HACK_x244 (HACK_x240 | HACK_x243)
+#define HACK_x245 (x & 16384)
+#define HACK_x246 (HACK_x245 << 14)
+#define HACK_x247 (HACK_x246 | (HACK_x246 << 1))
+#define HACK_x248 (x & 32768)
+#define HACK_x249 (HACK_x248 << 15)
+#define HACK_x250 (HACK_x249 | (HACK_x249 << 1))
+#define HACK_x251 (HACK_x247 | HACK_x250)
+#define HACK_x252 (HACK_x244 | HACK_x251)
+#define HACK_x253 (HACK_x237 | HACK_x252)
+#define HACK_x254 (HACK_x92 | HACK_x253)
+    case 62: return HACK_x254;
+#define HACK_x255 (x & 4294967295)
+#define HACK_x256 HACK_x255
+    case 63: return HACK_x256;
+#define HACK_x257 (HACK_x95 | (HACK_x95 << 32))
+    case 64: return HACK_x257;
+#define HACK_x258 (HACK_x96 | (HACK_x96 << 32))
+    case 65: return HACK_x258;
+#define HACK_x259 (HACK_x97 | (HACK_x97 << 32))
+    case 66: return HACK_x259;
+#define HACK_x260 (HACK_x98 | (HACK_x98 << 32))
+    case 67: return HACK_x260;
+#define HACK_x261 (HACK_x99 | (HACK_x99 << 32))
+    case 68: return HACK_x261;
+#define HACK_x262 (HACK_x100 | (HACK_x100 << 32))
+    case 69: return HACK_x262;
+#define HACK_x263 (HACK_x101 | (HACK_x101 << 32))
+    case 70: return HACK_x263;
+#define HACK_x264 (HACK_x102 | (HACK_x102 << 32))
+    case 71: return HACK_x264;
+#define HACK_x265 (HACK_x103 | (HACK_x103 << 32))
+    case 72: return HACK_x265;
+#define HACK_x266 (HACK_x104 | (HACK_x104 << 32))
+    case 73: return HACK_x266;
+#define HACK_x267 (HACK_x105 | (HACK_x105 << 32))
+    case 74: return HACK_x267;
+#define HACK_x268 (HACK_x106 | (HACK_x106 << 32))
+    case 75: return HACK_x268;
+#define HACK_x269 (HACK_x107 | (HACK_x107 << 32))
+    case 76: return HACK_x269;
+#define HACK_x270 (HACK_x108 | (HACK_x108 << 32))
+    case 77: return HACK_x270;
+#define HACK_x271 (HACK_x109 | (HACK_x109 << 32))
+    case 78: return HACK_x271;
+#define HACK_x272 (HACK_x110 | (HACK_x110 << 32))
+    case 79: return HACK_x272;
+#define HACK_x273 (HACK_x116 | (HACK_x116 << 32))
+    case 80: return HACK_x273;
+#define HACK_x274 (HACK_x121 | (HACK_x121 << 32))
+    case 81: return HACK_x274;
+#define HACK_x275 (HACK_x129 | (HACK_x129 << 32))
+    case 82: return HACK_x275;
+#define HACK_x276 (HACK_x133 | (HACK_x133 << 32))
+    case 83: return HACK_x276;
+#define HACK_x277 (HACK_x140 | (HACK_x140 << 32))
+    case 84: return HACK_x277;
+#define HACK_x278 (HACK_x147 | (HACK_x147 << 32))
+    case 85: return HACK_x278;
+#define HACK_x279 (HACK_x160 | (HACK_x160 << 32))
+    case 86: return HACK_x279;
+#define HACK_x280 (HACK_x164 | (HACK_x164 << 32))
+    case 87: return HACK_x280;
+#define HACK_x281 (HACK_x171 | (HACK_x171 << 32))
+    case 88: return HACK_x281;
+#define HACK_x282 (HACK_x177 | (HACK_x177 << 32))
+    case 89: return HACK_x282;
+#define HACK_x283 (HACK_x186 | (HACK_x186 << 32))
+    case 90: return HACK_x283;
+#define HACK_x284 (HACK_x194 | (HACK_x194 << 32))
+    case 91: return HACK_x284;
+#define HACK_x285 (HACK_x206 | (HACK_x206 << 32))
+    case 92: return HACK_x285;
+#define HACK_x286 (HACK_x222 | (HACK_x222 << 32))
+    case 93: return HACK_x286;
+#define HACK_x287 (HACK_x254 | (HACK_x254 << 32))
+    case 94: return HACK_x287;
+#define HACK_x288 (HACK_x256 | (HACK_x256 << 32))
+    case 95: return HACK_x288;
+#define HACK_x289 (HACK_x7 << 31)
+#define HACK_x290 (HACK_x289 | (HACK_x289 << 1))
+#define HACK_x291 (HACK_x290 | (HACK_x290 << 2))
+#define HACK_x292 (HACK_x291 | (HACK_x291 << 4))
+#define HACK_x293 (HACK_x292 | (HACK_x292 << 8))
+#define HACK_x294 (HACK_x293 | (HACK_x293 << 16))
+#define HACK_x295 (HACK_x95 | HACK_x294)
+    case 96: return HACK_x295;
+#define HACK_x296 (HACK_x21 << 30)
+#define HACK_x297 (HACK_x296 | (HACK_x296 << 2))
+#define HACK_x298 (HACK_x297 | (HACK_x297 << 4))
+#define HACK_x299 (HACK_x298 | (HACK_x298 << 8))
+#define HACK_x300 (HACK_x299 | (HACK_x299 << 16))
+#define HACK_x301 (HACK_x96 | HACK_x300)
+    case 97: return HACK_x301;
+#define HACK_x302 (HACK_x25 << 30)
+#define HACK_x303 (HACK_x302 | (HACK_x302 << 1))
+#define HACK_x304 (HACK_x28 << 31)
+#define HACK_x305 (HACK_x304 | (HACK_x304 << 1))
+#define HACK_x306 (HACK_x303 | HACK_x305)
+#define HACK_x307 (HACK_x306 | (HACK_x306 << 4))
+#define HACK_x308 (HACK_x307 | (HACK_x307 << 8))
+#define HACK_x309 (HACK_x308 | (HACK_x308 << 16))
+#define HACK_x310 (HACK_x97 | HACK_x309)
+    case 98: return HACK_x310;
+#define HACK_x311 (HACK_x59 << 28)
+#define HACK_x312 (HACK_x311 | (HACK_x311 << 4))
+#define HACK_x313 (HACK_x312 | (HACK_x312 << 8))
+#define HACK_x314 (HACK_x313 | (HACK_x313 << 16))
+#define HACK_x315 (HACK_x98 | HACK_x314)
+    case 99: return HACK_x315;
+#define HACK_x316 (HACK_x303 | (HACK_x303 << 2))
+#define HACK_x317 (HACK_x28 << 33)
+#define HACK_x318 (HACK_x317 | (HACK_x317 << 1))
+#define HACK_x319 (HACK_x318 | (HACK_x318 << 2))
+#define HACK_x320 (HACK_x316 | HACK_x319)
+#define HACK_x321 (HACK_x320 | (HACK_x320 << 8))
+#define HACK_x322 (HACK_x321 | (HACK_x321 << 16))
+#define HACK_x323 (HACK_x99 | HACK_x322)
+    case 100: return HACK_x323;
+#define HACK_x324 (HACK_x69 << 28)
+#define HACK_x325 (HACK_x324 | (HACK_x324 << 2))
+#define HACK_x326 (HACK_x72 << 30)
+#define HACK_x327 (HACK_x326 | (HACK_x326 << 2))
+#define HACK_x328 (HACK_x325 | HACK_x327)
+#define HACK_x329 (HACK_x328 | (HACK_x328 << 8))
+#define HACK_x330 (HACK_x329 | (HACK_x329 << 16))
+#define HACK_x331 (HACK_x100 | HACK_x330)
+    case 101: return HACK_x331;
+#define HACK_x332 (HACK_x77 << 28)
+#define HACK_x333 (HACK_x332 | (HACK_x332 << 1))
+#define HACK_x334 (HACK_x80 << 29)
+#define HACK_x335 (HACK_x334 | (HACK_x334 << 1))
+#define HACK_x336 (HACK_x333 | HACK_x335)
+#define HACK_x337 (HACK_x84 << 30)
+#define HACK_x338 (HACK_x337 | (HACK_x337 << 1))
+#define HACK_x339 (HACK_x87 << 31)
+#define HACK_x340 (HACK_x339 | (HACK_x339 << 1))
+#define HACK_x341 (HACK_x338 | HACK_x340)
+#define HACK_x342 (HACK_x336 | HACK_x341)
+#define HACK_x343 (HACK_x342 | (HACK_x342 << 8))
+#define HACK_x344 (HACK_x343 | (HACK_x343 << 16))
+#define HACK_x345 (HACK_x101 | HACK_x344)
+    case 102: return HACK_x345;
+#define HACK_x346 (HACK_x161 << 24)
+#define HACK_x347 (HACK_x346 | (HACK_x346 << 8))
+#define HACK_x348 (HACK_x347 | (HACK_x347 << 16))
+#define HACK_x349 (HACK_x102 | HACK_x348)
+    case 103: return HACK_x349;
+#define HACK_x350 (HACK_x316 | (HACK_x316 << 4))
+#define HACK_x351 (HACK_x28 << 37)
+#define HACK_x352 (HACK_x351 | (HACK_x351 << 1))
+#define HACK_x353 (HACK_x352 | (HACK_x352 << 2))
+#define HACK_x354 (HACK_x353 | (HACK_x353 << 4))
+#define HACK_x355 (HACK_x350 | HACK_x354)
+#define HACK_x356 (HACK_x355 | (HACK_x355 << 16))
+#define HACK_x357 (HACK_x103 | HACK_x356)
+    case 104: return HACK_x357;
+#define HACK_x358 (HACK_x325 | (HACK_x325 << 4))
+#define HACK_x359 (HACK_x72 << 34)
+#define HACK_x360 (HACK_x359 | (HACK_x359 << 2))
+#define HACK_x361 (HACK_x360 | (HACK_x360 << 4))
+#define HACK_x362 (HACK_x358 | HACK_x361)
+#define HACK_x363 (HACK_x362 | (HACK_x362 << 16))
+#define HACK_x364 (HACK_x104 | HACK_x363)
+    case 105: return HACK_x364;
+#define HACK_x365 (HACK_x336 | (HACK_x336 << 4))
+#define HACK_x366 (HACK_x84 << 34)
+#define HACK_x367 (HACK_x366 | (HACK_x366 << 1))
+#define HACK_x368 (HACK_x87 << 35)
+#define HACK_x369 (HACK_x368 | (HACK_x368 << 1))
+#define HACK_x370 (HACK_x367 | HACK_x369)
+#define HACK_x371 (HACK_x370 | (HACK_x370 << 4))
+#define HACK_x372 (HACK_x365 | HACK_x371)
+#define HACK_x373 (HACK_x372 | (HACK_x372 << 16))
+#define HACK_x374 (HACK_x105 | HACK_x373)
+    case 106: return HACK_x374;
+#define HACK_x375 (HACK_x187 << 24)
+#define HACK_x376 (HACK_x375 | (HACK_x375 << 4))
+#define HACK_x377 (HACK_x190 << 28)
+#define HACK_x378 (HACK_x377 | (HACK_x377 << 4))
+#define HACK_x379 (HACK_x376 | HACK_x378)
+#define HACK_x380 (HACK_x379 | (HACK_x379 << 16))
+#define HACK_x381 (HACK_x106 | HACK_x380)
+    case 107: return HACK_x381;
+#define HACK_x382 (HACK_x333 | (HACK_x333 << 2))
+#define HACK_x383 (HACK_x80 << 31)
+#define HACK_x384 (HACK_x383 | (HACK_x383 << 1))
+#define HACK_x385 (HACK_x384 | (HACK_x384 << 2))
+#define HACK_x386 (HACK_x382 | HACK_x385)
+#define HACK_x387 (HACK_x367 | (HACK_x367 << 2))
+#define HACK_x388 (HACK_x87 << 37)
+#define HACK_x389 (HACK_x388 | (HACK_x388 << 1))
+#define HACK_x390 (HACK_x389 | (HACK_x389 << 2))
+#define HACK_x391 (HACK_x387 | HACK_x390)
+#define HACK_x392 (HACK_x386 | HACK_x391)
+#define HACK_x393 (HACK_x392 | (HACK_x392 << 16))
+#define HACK_x394 (HACK_x107 | HACK_x393)
+    case 108: return HACK_x394;
+#define HACK_x395 (HACK_x207 << 24)
+#define HACK_x396 (HACK_x395 | (HACK_x395 << 2))
+#define HACK_x397 (HACK_x210 << 26)
+#define HACK_x398 (HACK_x397 | (HACK_x397 << 2))
+#define HACK_x399 (HACK_x396 | HACK_x398)
+#define HACK_x400 (HACK_x214 << 28)
+#define HACK_x401 (HACK_x400 | (HACK_x400 << 2))
+#define HACK_x402 (HACK_x217 << 30)
+#define HACK_x403 (HACK_x402 | (HACK_x402 << 2))
+#define HACK_x404 (HACK_x401 | HACK_x403)
+#define HACK_x405 (HACK_x399 | HACK_x404)
+#define HACK_x406 (HACK_x405 | (HACK_x405 << 16))
+#define HACK_x407 (HACK_x108 | HACK_x406)
+    case 109: return HACK_x407;
+#define HACK_x408 (HACK_x223 << 24)
+#define HACK_x409 (HACK_x408 | (HACK_x408 << 1))
+#define HACK_x410 (HACK_x226 << 25)
+#define HACK_x411 (HACK_x410 | (HACK_x410 << 1))
+#define HACK_x412 (HACK_x409 | HACK_x411)
+#define HACK_x413 (HACK_x230 << 26)
+#define HACK_x414 (HACK_x413 | (HACK_x413 << 1))
+#define HACK_x415 (HACK_x233 << 27)
+#define HACK_x416 (HACK_x415 | (HACK_x415 << 1))
+#define HACK_x417 (HACK_x414 | HACK_x416)
+#define HACK_x418 (HACK_x412 | HACK_x417)
+#define HACK_x419 (HACK_x238 << 28)
+#define HACK_x420 (HACK_x419 | (HACK_x419 << 1))
+#define HACK_x421 (HACK_x241 << 29)
+#define HACK_x422 (HACK_x421 | (HACK_x421 << 1))
+#define HACK_x423 (HACK_x420 | HACK_x422)
+#define HACK_x424 (HACK_x245 << 30)
+#define HACK_x425 (HACK_x424 | (HACK_x424 << 1))
+#define HACK_x426 (HACK_x248 << 31)
+#define HACK_x427 (HACK_x426 | (HACK_x426 << 1))
+#define HACK_x428 (HACK_x425 | HACK_x427)
+#define HACK_x429 (HACK_x423 | HACK_x428)
+#define HACK_x430 (HACK_x418 | HACK_x429)
+#define HACK_x431 (HACK_x430 | (HACK_x430 << 16))
+#define HACK_x432 (HACK_x109 | HACK_x431)
+    case 110: return HACK_x432;
+#define HACK_x433 (x & 4294901760)
+#define HACK_x434 (HACK_x433 << 16)
+#define HACK_x435 (HACK_x434 | (HACK_x434 << 16))
+#define HACK_x436 (HACK_x110 | HACK_x435)
+    case 111: return HACK_x436;
+#define HACK_x437 (HACK_x350 | (HACK_x350 << 8))
+#define HACK_x438 (HACK_x28 << 45)
+#define HACK_x439 (HACK_x438 | (HACK_x438 << 1))
+#define HACK_x440 (HACK_x439 | (HACK_x439 << 2))
+#define HACK_x441 (HACK_x440 | (HACK_x440 << 4))
+#define HACK_x442 (HACK_x441 | (HACK_x441 << 8))
+#define HACK_x443 (HACK_x437 | HACK_x442)
+#define HACK_x444 (HACK_x116 | HACK_x443)
+    case 112: return HACK_x444;
+#define HACK_x445 (HACK_x358 | (HACK_x358 << 8))
+#define HACK_x446 (HACK_x72 << 42)
+#define HACK_x447 (HACK_x446 | (HACK_x446 << 2))
+#define HACK_x448 (HACK_x447 | (HACK_x447 << 4))
+#define HACK_x449 (HACK_x448 | (HACK_x448 << 8))
+#define HACK_x450 (HACK_x445 | HACK_x449)
+#define HACK_x451 (HACK_x121 | HACK_x450)
+    case 113: return HACK_x451;
+#define HACK_x452 (HACK_x365 | (HACK_x365 << 8))
+#define HACK_x453 (HACK_x84 << 42)
+#define HACK_x454 (HACK_x453 | (HACK_x453 << 1))
+#define HACK_x455 (HACK_x87 << 43)
+#define HACK_x456 (HACK_x455 | (HACK_x455 << 1))
+#define HACK_x457 (HACK_x454 | HACK_x456)
+#define HACK_x458 (HACK_x457 | (HACK_x457 << 4))
+#define HACK_x459 (HACK_x458 | (HACK_x458 << 8))
+#define HACK_x460 (HACK_x452 | HACK_x459)
+#define HACK_x461 (HACK_x129 | HACK_x460)
+    case 114: return HACK_x461;
+#define HACK_x462 (HACK_x376 | (HACK_x376 << 8))
+#define HACK_x463 (HACK_x190 << 36)
+#define HACK_x464 (HACK_x463 | (HACK_x463 << 4))
+#define HACK_x465 (HACK_x464 | (HACK_x464 << 8))
+#define HACK_x466 (HACK_x462 | HACK_x465)
+#define HACK_x467 (HACK_x133 | HACK_x466)
+    case 115: return HACK_x467;
+#define HACK_x468 (HACK_x386 | (HACK_x386 << 8))
+#define HACK_x469 (HACK_x454 | (HACK_x454 << 2))
+#define HACK_x470 (HACK_x87 << 45)
+#define HACK_x471 (HACK_x470 | (HACK_x470 << 1))
+#define HACK_x472 (HACK_x471 | (HACK_x471 << 2))
+#define HACK_x473 (HACK_x469 | HACK_x472)
+#define HACK_x474 (HACK_x473 | (HACK_x473 << 8))
+#define HACK_x475 (HACK_x468 | HACK_x474)
+#define HACK_x476 (HACK_x140 | HACK_x475)
+    case 116: return HACK_x476;
+#define HACK_x477 (HACK_x399 | (HACK_x399 << 8))
+#define HACK_x478 (HACK_x214 << 36)
+#define HACK_x479 (HACK_x478 | (HACK_x478 << 2))
+#define HACK_x480 (HACK_x217 << 38)
+#define HACK_x481 (HACK_x480 | (HACK_x480 << 2))
+#define HACK_x482 (HACK_x479 | HACK_x481)
+#define HACK_x483 (HACK_x482 | (HACK_x482 << 8))
+#define HACK_x484 (HACK_x477 | HACK_x483)
+#define HACK_x485 (HACK_x147 | HACK_x484)
+    case 117: return HACK_x485;
+#define HACK_x486 (HACK_x418 | (HACK_x418 << 8))
+#define HACK_x487 (HACK_x238 << 36)
+#define HACK_x488 (HACK_x487 | (HACK_x487 << 1))
+#define HACK_x489 (HACK_x241 << 37)
+#define HACK_x490 (HACK_x489 | (HACK_x489 << 1))
+#define HACK_x491 (HACK_x488 | HACK_x490)
+#define HACK_x492 (HACK_x245 << 38)
+#define HACK_x493 (HACK_x492 | (HACK_x492 << 1))
+#define HACK_x494 (HACK_x248 << 39)
+#define HACK_x495 (HACK_x494 | (HACK_x494 << 1))
+#define HACK_x496 (HACK_x493 | HACK_x495)
+#define HACK_x497 (HACK_x491 | HACK_x496)
+#define HACK_x498 (HACK_x497 | (HACK_x497 << 8))
+#define HACK_x499 (HACK_x486 | HACK_x498)
+#define HACK_x500 (HACK_x160 | HACK_x499)
+    case 118: return HACK_x500;
+#define HACK_x501 (x & 16711680)
+#define HACK_x502 (HACK_x501 << 16)
+#define HACK_x503 (HACK_x502 | (HACK_x502 << 8))
+#define HACK_x504 (x & 4278190080)
+#define HACK_x505 (HACK_x504 << 24)
+#define HACK_x506 (HACK_x505 | (HACK_x505 << 8))
+#define HACK_x507 (HACK_x503 | HACK_x506)
+#define HACK_x508 (HACK_x164 | HACK_x507)
+    case 119: return HACK_x508;
+#define HACK_x509 (HACK_x382 | (HACK_x382 << 4))
+#define HACK_x510 (HACK_x80 << 35)
+#define HACK_x511 (HACK_x510 | (HACK_x510 << 1))
+#define HACK_x512 (HACK_x511 | (HACK_x511 << 2))
+#define HACK_x513 (HACK_x512 | (HACK_x512 << 4))
+#define HACK_x514 (HACK_x509 | HACK_x513)
+#define HACK_x515 (HACK_x469 | (HACK_x469 << 4))
+#define HACK_x516 (HACK_x87 << 49)
+#define HACK_x517 (HACK_x516 | (HACK_x516 << 1))
+#define HACK_x518 (HACK_x517 | (HACK_x517 << 2))
+#define HACK_x519 (HACK_x518 | (HACK_x518 << 4))
+#define HACK_x520 (HACK_x515 | HACK_x519)
+#define HACK_x521 (HACK_x514 | HACK_x520)
+#define HACK_x522 (HACK_x171 | HACK_x521)
+    case 120: return HACK_x522;
+#define HACK_x523 (HACK_x396 | (HACK_x396 << 4))
+#define HACK_x524 (HACK_x210 << 30)
+#define HACK_x525 (HACK_x524 | (HACK_x524 << 2))
+#define HACK_x526 (HACK_x525 | (HACK_x525 << 4))
+#define HACK_x527 (HACK_x523 | HACK_x526)
+#define HACK_x528 (HACK_x479 | (HACK_x479 << 4))
+#define HACK_x529 (HACK_x217 << 42)
+#define HACK_x530 (HACK_x529 | (HACK_x529 << 2))
+#define HACK_x531 (HACK_x530 | (HACK_x530 << 4))
+#define HACK_x532 (HACK_x528 | HACK_x531)
+#define HACK_x533 (HACK_x527 | HACK_x532)
+#define HACK_x534 (HACK_x177 | HACK_x533)
+    case 121: return HACK_x534;
+#define HACK_x535 (HACK_x412 | (HACK_x412 << 4))
+#define HACK_x536 (HACK_x230 << 30)
+#define HACK_x537 (HACK_x536 | (HACK_x536 << 1))
+#define HACK_x538 (HACK_x233 << 31)
+#define HACK_x539 (HACK_x538 | (HACK_x538 << 1))
+#define HACK_x540 (HACK_x537 | HACK_x539)
+#define HACK_x541 (HACK_x540 | (HACK_x540 << 4))
+#define HACK_x542 (HACK_x535 | HACK_x541)
+#define HACK_x543 (HACK_x491 | (HACK_x491 << 4))
+#define HACK_x544 (HACK_x245 << 42)
+#define HACK_x545 (HACK_x544 | (HACK_x544 << 1))
+#define HACK_x546 (HACK_x248 << 43)
+#define HACK_x547 (HACK_x546 | (HACK_x546 << 1))
+#define HACK_x548 (HACK_x545 | HACK_x547)
+#define HACK_x549 (HACK_x548 | (HACK_x548 << 4))
+#define HACK_x550 (HACK_x543 | HACK_x549)
+#define HACK_x551 (HACK_x542 | HACK_x550)
+#define HACK_x552 (HACK_x186 | HACK_x551)
+    case 122: return HACK_x552;
+#define HACK_x553 (x & 983040)
+#define HACK_x554 (HACK_x553 << 16)
+#define HACK_x555 (HACK_x554 | (HACK_x554 << 4))
+#define HACK_x556 (x & 15728640)
+#define HACK_x557 (HACK_x556 << 20)
+#define HACK_x558 (HACK_x557 | (HACK_x557 << 4))
+#define HACK_x559 (HACK_x555 | HACK_x558)
+#define HACK_x560 (x & 251658240)
+#define HACK_x561 (HACK_x560 << 24)
+#define HACK_x562 (HACK_x561 | (HACK_x561 << 4))
+#define HACK_x563 (x & 4026531840)
+#define HACK_x564 (HACK_x563 << 28)
+#define HACK_x565 (HACK_x564 | (HACK_x564 << 4))
+#define HACK_x566 (HACK_x562 | HACK_x565)
+#define HACK_x567 (HACK_x559 | HACK_x566)
+#define HACK_x568 (HACK_x194 | HACK_x567)
+    case 123: return HACK_x568;
+#define HACK_x569 (HACK_x409 | (HACK_x409 << 2))
+#define HACK_x570 (HACK_x226 << 27)
+#define HACK_x571 (HACK_x570 | (HACK_x570 << 1))
+#define HACK_x572 (HACK_x571 | (HACK_x571 << 2))
+#define HACK_x573 (HACK_x569 | HACK_x572)
+#define HACK_x574 (HACK_x537 | (HACK_x537 << 2))
+#define HACK_x575 (HACK_x233 << 33)
+#define HACK_x576 (HACK_x575 | (HACK_x575 << 1))
+#define HACK_x577 (HACK_x576 | (HACK_x576 << 2))
+#define HACK_x578 (HACK_x574 | HACK_x577)
+#define HACK_x579 (HACK_x573 | HACK_x578)
+#define HACK_x580 (HACK_x488 | (HACK_x488 << 2))
+#define HACK_x581 (HACK_x241 << 39)
+#define HACK_x582 (HACK_x581 | (HACK_x581 << 1))
+#define HACK_x583 (HACK_x582 | (HACK_x582 << 2))
+#define HACK_x584 (HACK_x580 | HACK_x583)
+#define HACK_x585 (HACK_x545 | (HACK_x545 << 2))
+#define HACK_x586 (HACK_x248 << 45)
+#define HACK_x587 (HACK_x586 | (HACK_x586 << 1))
+#define HACK_x588 (HACK_x587 | (HACK_x587 << 2))
+#define HACK_x589 (HACK_x585 | HACK_x588)
+#define HACK_x590 (HACK_x584 | HACK_x589)
+#define HACK_x591 (HACK_x579 | HACK_x590)
+#define HACK_x592 (HACK_x206 | HACK_x591)
+    case 124: return HACK_x592;
+#define HACK_x593 (x & 196608)
+#define HACK_x594 (HACK_x593 << 16)
+#define HACK_x595 (HACK_x594 | (HACK_x594 << 2))
+#define HACK_x596 (x & 786432)
+#define HACK_x597 (HACK_x596 << 18)
+#define HACK_x598 (HACK_x597 | (HACK_x597 << 2))
+#define HACK_x599 (HACK_x595 | HACK_x598)
+#define HACK_x600 (x & 3145728)
+#define HACK_x601 (HACK_x600 << 20)
+#define HACK_x602 (HACK_x601 | (HACK_x601 << 2))
+#define HACK_x603 (x & 12582912)
+#define HACK_x604 (HACK_x603 << 22)
+#define HACK_x605 (HACK_x604 | (HACK_x604 << 2))
+#define HACK_x606 (HACK_x602 | HACK_x605)
+#define HACK_x607 (HACK_x599 | HACK_x606)
+#define HACK_x608 (x & 50331648)
+#define HACK_x609 (HACK_x608 << 24)
+#define HACK_x610 (HACK_x609 | (HACK_x609 << 2))
+#define HACK_x611 (x & 201326592)
+#define HACK_x612 (HACK_x611 << 26)
+#define HACK_x613 (HACK_x612 | (HACK_x612 << 2))
+#define HACK_x614 (HACK_x610 | HACK_x613)
+#define HACK_x615 (x & 805306368)
+#define HACK_x616 (HACK_x615 << 28)
+#define HACK_x617 (HACK_x616 | (HACK_x616 << 2))
+#define HACK_x618 (x & 3221225472)
+#define HACK_x619 (HACK_x618 << 30)
+#define HACK_x620 (HACK_x619 | (HACK_x619 << 2))
+#define HACK_x621 (HACK_x617 | HACK_x620)
+#define HACK_x622 (HACK_x614 | HACK_x621)
+#define HACK_x623 (HACK_x607 | HACK_x622)
+#define HACK_x624 (HACK_x222 | HACK_x623)
+    case 125: return HACK_x624;
+#define HACK_x625 (x & 65536)
+#define HACK_x626 (HACK_x625 << 16)
+#define HACK_x627 (HACK_x626 | (HACK_x626 << 1))
+#define HACK_x628 (x & 131072)
+#define HACK_x629 (HACK_x628 << 17)
+#define HACK_x630 (HACK_x629 | (HACK_x629 << 1))
+#define HACK_x631 (HACK_x627 | HACK_x630)
+#define HACK_x632 (x & 262144)
+#define HACK_x633 (HACK_x632 << 18)
+#define HACK_x634 (HACK_x633 | (HACK_x633 << 1))
+#define HACK_x635 (x & 524288)
+#define HACK_x636 (HACK_x635 << 19)
+#define HACK_x637 (HACK_x636 | (HACK_x636 << 1))
+#define HACK_x638 (HACK_x634 | HACK_x637)
+#define HACK_x639 (HACK_x631 | HACK_x638)
+#define HACK_x640 (x & 1048576)
+#define HACK_x641 (HACK_x640 << 20)
+#define HACK_x642 (HACK_x641 | (HACK_x641 << 1))
+#define HACK_x643 (x & 2097152)
+#define HACK_x644 (HACK_x643 << 21)
+#define HACK_x645 (HACK_x644 | (HACK_x644 << 1))
+#define HACK_x646 (HACK_x642 | HACK_x645)
+#define HACK_x647 (x & 4194304)
+#define HACK_x648 (HACK_x647 << 22)
+#define HACK_x649 (HACK_x648 | (HACK_x648 << 1))
+#define HACK_x650 (x & 8388608)
+#define HACK_x651 (HACK_x650 << 23)
+#define HACK_x652 (HACK_x651 | (HACK_x651 << 1))
+#define HACK_x653 (HACK_x649 | HACK_x652)
+#define HACK_x654 (HACK_x646 | HACK_x653)
+#define HACK_x655 (HACK_x639 | HACK_x654)
+#define HACK_x656 (x & 16777216)
+#define HACK_x657 (HACK_x656 << 24)
+#define HACK_x658 (HACK_x657 | (HACK_x657 << 1))
+#define HACK_x659 (x & 33554432)
+#define HACK_x660 (HACK_x659 << 25)
+#define HACK_x661 (HACK_x660 | (HACK_x660 << 1))
+#define HACK_x662 (HACK_x658 | HACK_x661)
+#define HACK_x663 (x & 67108864)
+#define HACK_x664 (HACK_x663 << 26)
+#define HACK_x665 (HACK_x664 | (HACK_x664 << 1))
+#define HACK_x666 (x & 134217728)
+#define HACK_x667 (HACK_x666 << 27)
+#define HACK_x668 (HACK_x667 | (HACK_x667 << 1))
+#define HACK_x669 (HACK_x665 | HACK_x668)
+#define HACK_x670 (HACK_x662 | HACK_x669)
+#define HACK_x671 (x & 268435456)
+#define HACK_x672 (HACK_x671 << 28)
+#define HACK_x673 (HACK_x672 | (HACK_x672 << 1))
+#define HACK_x674 (x & 536870912)
+#define HACK_x675 (HACK_x674 << 29)
+#define HACK_x676 (HACK_x675 | (HACK_x675 << 1))
+#define HACK_x677 (HACK_x673 | HACK_x676)
+#define HACK_x678 (x & 1073741824)
+#define HACK_x679 (HACK_x678 << 30)
+#define HACK_x680 (HACK_x679 | (HACK_x679 << 1))
+#define HACK_x681 (x & 2147483648)
+#define HACK_x682 (HACK_x681 << 31)
+#define HACK_x683 (HACK_x682 | (HACK_x682 << 1))
+#define HACK_x684 (HACK_x680 | HACK_x683)
+#define HACK_x685 (HACK_x677 | HACK_x684)
+#define HACK_x686 (HACK_x670 | HACK_x685)
+#define HACK_x687 (HACK_x655 | HACK_x686)
+#define HACK_x688 (HACK_x254 | HACK_x687)
+    case 126: return HACK_x688;
     case 127: return x;
     default:
         assert(false);
         return 0;
     }
+
+// This code has been auto-generated by Austin J. Adams after the code above
+// interfered with some Windows API headers that contained the token _x86.
+// (Thus, I replaced _x above with HACK_x)
+#undef HACK_x0
+#undef HACK_x1
+#undef HACK_x2
+#undef HACK_x3
+#undef HACK_x4
+#undef HACK_x5
+#undef HACK_x6
+#undef HACK_x7
+#undef HACK_x8
+#undef HACK_x9
+#undef HACK_x10
+#undef HACK_x11
+#undef HACK_x12
+#undef HACK_x13
+#undef HACK_x14
+#undef HACK_x15
+#undef HACK_x16
+#undef HACK_x17
+#undef HACK_x18
+#undef HACK_x19
+#undef HACK_x20
+#undef HACK_x21
+#undef HACK_x22
+#undef HACK_x23
+#undef HACK_x24
+#undef HACK_x25
+#undef HACK_x26
+#undef HACK_x27
+#undef HACK_x28
+#undef HACK_x29
+#undef HACK_x30
+#undef HACK_x31
+#undef HACK_x32
+#undef HACK_x33
+#undef HACK_x34
+#undef HACK_x35
+#undef HACK_x36
+#undef HACK_x37
+#undef HACK_x38
+#undef HACK_x39
+#undef HACK_x40
+#undef HACK_x41
+#undef HACK_x42
+#undef HACK_x43
+#undef HACK_x44
+#undef HACK_x45
+#undef HACK_x46
+#undef HACK_x47
+#undef HACK_x48
+#undef HACK_x49
+#undef HACK_x50
+#undef HACK_x51
+#undef HACK_x52
+#undef HACK_x53
+#undef HACK_x54
+#undef HACK_x55
+#undef HACK_x56
+#undef HACK_x57
+#undef HACK_x58
+#undef HACK_x59
+#undef HACK_x60
+#undef HACK_x61
+#undef HACK_x62
+#undef HACK_x63
+#undef HACK_x64
+#undef HACK_x65
+#undef HACK_x66
+#undef HACK_x67
+#undef HACK_x68
+#undef HACK_x69
+#undef HACK_x70
+#undef HACK_x71
+#undef HACK_x72
+#undef HACK_x73
+#undef HACK_x74
+#undef HACK_x75
+#undef HACK_x76
+#undef HACK_x77
+#undef HACK_x78
+#undef HACK_x79
+#undef HACK_x80
+#undef HACK_x81
+#undef HACK_x82
+#undef HACK_x83
+#undef HACK_x84
+#undef HACK_x85
+#undef HACK_x86
+#undef HACK_x87
+#undef HACK_x88
+#undef HACK_x89
+#undef HACK_x90
+#undef HACK_x91
+#undef HACK_x92
+#undef HACK_x93
+#undef HACK_x94
+#undef HACK_x95
+#undef HACK_x96
+#undef HACK_x97
+#undef HACK_x98
+#undef HACK_x99
+#undef HACK_x100
+#undef HACK_x101
+#undef HACK_x102
+#undef HACK_x103
+#undef HACK_x104
+#undef HACK_x105
+#undef HACK_x106
+#undef HACK_x107
+#undef HACK_x108
+#undef HACK_x109
+#undef HACK_x110
+#undef HACK_x111
+#undef HACK_x112
+#undef HACK_x113
+#undef HACK_x114
+#undef HACK_x115
+#undef HACK_x116
+#undef HACK_x117
+#undef HACK_x118
+#undef HACK_x119
+#undef HACK_x120
+#undef HACK_x121
+#undef HACK_x122
+#undef HACK_x123
+#undef HACK_x124
+#undef HACK_x125
+#undef HACK_x126
+#undef HACK_x127
+#undef HACK_x128
+#undef HACK_x129
+#undef HACK_x130
+#undef HACK_x131
+#undef HACK_x132
+#undef HACK_x133
+#undef HACK_x134
+#undef HACK_x135
+#undef HACK_x136
+#undef HACK_x137
+#undef HACK_x138
+#undef HACK_x139
+#undef HACK_x140
+#undef HACK_x141
+#undef HACK_x142
+#undef HACK_x143
+#undef HACK_x144
+#undef HACK_x145
+#undef HACK_x146
+#undef HACK_x147
+#undef HACK_x148
+#undef HACK_x149
+#undef HACK_x150
+#undef HACK_x151
+#undef HACK_x152
+#undef HACK_x153
+#undef HACK_x154
+#undef HACK_x155
+#undef HACK_x156
+#undef HACK_x157
+#undef HACK_x158
+#undef HACK_x159
+#undef HACK_x160
+#undef HACK_x161
+#undef HACK_x162
+#undef HACK_x163
+#undef HACK_x164
+#undef HACK_x165
+#undef HACK_x166
+#undef HACK_x167
+#undef HACK_x168
+#undef HACK_x169
+#undef HACK_x170
+#undef HACK_x171
+#undef HACK_x172
+#undef HACK_x173
+#undef HACK_x174
+#undef HACK_x175
+#undef HACK_x176
+#undef HACK_x177
+#undef HACK_x178
+#undef HACK_x179
+#undef HACK_x180
+#undef HACK_x181
+#undef HACK_x182
+#undef HACK_x183
+#undef HACK_x184
+#undef HACK_x185
+#undef HACK_x186
+#undef HACK_x187
+#undef HACK_x188
+#undef HACK_x189
+#undef HACK_x190
+#undef HACK_x191
+#undef HACK_x192
+#undef HACK_x193
+#undef HACK_x194
+#undef HACK_x195
+#undef HACK_x196
+#undef HACK_x197
+#undef HACK_x198
+#undef HACK_x199
+#undef HACK_x200
+#undef HACK_x201
+#undef HACK_x202
+#undef HACK_x203
+#undef HACK_x204
+#undef HACK_x205
+#undef HACK_x206
+#undef HACK_x207
+#undef HACK_x208
+#undef HACK_x209
+#undef HACK_x210
+#undef HACK_x211
+#undef HACK_x212
+#undef HACK_x213
+#undef HACK_x214
+#undef HACK_x215
+#undef HACK_x216
+#undef HACK_x217
+#undef HACK_x218
+#undef HACK_x219
+#undef HACK_x220
+#undef HACK_x221
+#undef HACK_x222
+#undef HACK_x223
+#undef HACK_x224
+#undef HACK_x225
+#undef HACK_x226
+#undef HACK_x227
+#undef HACK_x228
+#undef HACK_x229
+#undef HACK_x230
+#undef HACK_x231
+#undef HACK_x232
+#undef HACK_x233
+#undef HACK_x234
+#undef HACK_x235
+#undef HACK_x236
+#undef HACK_x237
+#undef HACK_x238
+#undef HACK_x239
+#undef HACK_x240
+#undef HACK_x241
+#undef HACK_x242
+#undef HACK_x243
+#undef HACK_x244
+#undef HACK_x245
+#undef HACK_x246
+#undef HACK_x247
+#undef HACK_x248
+#undef HACK_x249
+#undef HACK_x250
+#undef HACK_x251
+#undef HACK_x252
+#undef HACK_x253
+#undef HACK_x254
+#undef HACK_x255
+#undef HACK_x256
+#undef HACK_x257
+#undef HACK_x258
+#undef HACK_x259
+#undef HACK_x260
+#undef HACK_x261
+#undef HACK_x262
+#undef HACK_x263
+#undef HACK_x264
+#undef HACK_x265
+#undef HACK_x266
+#undef HACK_x267
+#undef HACK_x268
+#undef HACK_x269
+#undef HACK_x270
+#undef HACK_x271
+#undef HACK_x272
+#undef HACK_x273
+#undef HACK_x274
+#undef HACK_x275
+#undef HACK_x276
+#undef HACK_x277
+#undef HACK_x278
+#undef HACK_x279
+#undef HACK_x280
+#undef HACK_x281
+#undef HACK_x282
+#undef HACK_x283
+#undef HACK_x284
+#undef HACK_x285
+#undef HACK_x286
+#undef HACK_x287
+#undef HACK_x288
+#undef HACK_x289
+#undef HACK_x290
+#undef HACK_x291
+#undef HACK_x292
+#undef HACK_x293
+#undef HACK_x294
+#undef HACK_x295
+#undef HACK_x296
+#undef HACK_x297
+#undef HACK_x298
+#undef HACK_x299
+#undef HACK_x300
+#undef HACK_x301
+#undef HACK_x302
+#undef HACK_x303
+#undef HACK_x304
+#undef HACK_x305
+#undef HACK_x306
+#undef HACK_x307
+#undef HACK_x308
+#undef HACK_x309
+#undef HACK_x310
+#undef HACK_x311
+#undef HACK_x312
+#undef HACK_x313
+#undef HACK_x314
+#undef HACK_x315
+#undef HACK_x316
+#undef HACK_x317
+#undef HACK_x318
+#undef HACK_x319
+#undef HACK_x320
+#undef HACK_x321
+#undef HACK_x322
+#undef HACK_x323
+#undef HACK_x324
+#undef HACK_x325
+#undef HACK_x326
+#undef HACK_x327
+#undef HACK_x328
+#undef HACK_x329
+#undef HACK_x330
+#undef HACK_x331
+#undef HACK_x332
+#undef HACK_x333
+#undef HACK_x334
+#undef HACK_x335
+#undef HACK_x336
+#undef HACK_x337
+#undef HACK_x338
+#undef HACK_x339
+#undef HACK_x340
+#undef HACK_x341
+#undef HACK_x342
+#undef HACK_x343
+#undef HACK_x344
+#undef HACK_x345
+#undef HACK_x346
+#undef HACK_x347
+#undef HACK_x348
+#undef HACK_x349
+#undef HACK_x350
+#undef HACK_x351
+#undef HACK_x352
+#undef HACK_x353
+#undef HACK_x354
+#undef HACK_x355
+#undef HACK_x356
+#undef HACK_x357
+#undef HACK_x358
+#undef HACK_x359
+#undef HACK_x360
+#undef HACK_x361
+#undef HACK_x362
+#undef HACK_x363
+#undef HACK_x364
+#undef HACK_x365
+#undef HACK_x366
+#undef HACK_x367
+#undef HACK_x368
+#undef HACK_x369
+#undef HACK_x370
+#undef HACK_x371
+#undef HACK_x372
+#undef HACK_x373
+#undef HACK_x374
+#undef HACK_x375
+#undef HACK_x376
+#undef HACK_x377
+#undef HACK_x378
+#undef HACK_x379
+#undef HACK_x380
+#undef HACK_x381
+#undef HACK_x382
+#undef HACK_x383
+#undef HACK_x384
+#undef HACK_x385
+#undef HACK_x386
+#undef HACK_x387
+#undef HACK_x388
+#undef HACK_x389
+#undef HACK_x390
+#undef HACK_x391
+#undef HACK_x392
+#undef HACK_x393
+#undef HACK_x394
+#undef HACK_x395
+#undef HACK_x396
+#undef HACK_x397
+#undef HACK_x398
+#undef HACK_x399
+#undef HACK_x400
+#undef HACK_x401
+#undef HACK_x402
+#undef HACK_x403
+#undef HACK_x404
+#undef HACK_x405
+#undef HACK_x406
+#undef HACK_x407
+#undef HACK_x408
+#undef HACK_x409
+#undef HACK_x410
+#undef HACK_x411
+#undef HACK_x412
+#undef HACK_x413
+#undef HACK_x414
+#undef HACK_x415
+#undef HACK_x416
+#undef HACK_x417
+#undef HACK_x418
+#undef HACK_x419
+#undef HACK_x420
+#undef HACK_x421
+#undef HACK_x422
+#undef HACK_x423
+#undef HACK_x424
+#undef HACK_x425
+#undef HACK_x426
+#undef HACK_x427
+#undef HACK_x428
+#undef HACK_x429
+#undef HACK_x430
+#undef HACK_x431
+#undef HACK_x432
+#undef HACK_x433
+#undef HACK_x434
+#undef HACK_x435
+#undef HACK_x436
+#undef HACK_x437
+#undef HACK_x438
+#undef HACK_x439
+#undef HACK_x440
+#undef HACK_x441
+#undef HACK_x442
+#undef HACK_x443
+#undef HACK_x444
+#undef HACK_x445
+#undef HACK_x446
+#undef HACK_x447
+#undef HACK_x448
+#undef HACK_x449
+#undef HACK_x450
+#undef HACK_x451
+#undef HACK_x452
+#undef HACK_x453
+#undef HACK_x454
+#undef HACK_x455
+#undef HACK_x456
+#undef HACK_x457
+#undef HACK_x458
+#undef HACK_x459
+#undef HACK_x460
+#undef HACK_x461
+#undef HACK_x462
+#undef HACK_x463
+#undef HACK_x464
+#undef HACK_x465
+#undef HACK_x466
+#undef HACK_x467
+#undef HACK_x468
+#undef HACK_x469
+#undef HACK_x470
+#undef HACK_x471
+#undef HACK_x472
+#undef HACK_x473
+#undef HACK_x474
+#undef HACK_x475
+#undef HACK_x476
+#undef HACK_x477
+#undef HACK_x478
+#undef HACK_x479
+#undef HACK_x480
+#undef HACK_x481
+#undef HACK_x482
+#undef HACK_x483
+#undef HACK_x484
+#undef HACK_x485
+#undef HACK_x486
+#undef HACK_x487
+#undef HACK_x488
+#undef HACK_x489
+#undef HACK_x490
+#undef HACK_x491
+#undef HACK_x492
+#undef HACK_x493
+#undef HACK_x494
+#undef HACK_x495
+#undef HACK_x496
+#undef HACK_x497
+#undef HACK_x498
+#undef HACK_x499
+#undef HACK_x500
+#undef HACK_x501
+#undef HACK_x502
+#undef HACK_x503
+#undef HACK_x504
+#undef HACK_x505
+#undef HACK_x506
+#undef HACK_x507
+#undef HACK_x508
+#undef HACK_x509
+#undef HACK_x510
+#undef HACK_x511
+#undef HACK_x512
+#undef HACK_x513
+#undef HACK_x514
+#undef HACK_x515
+#undef HACK_x516
+#undef HACK_x517
+#undef HACK_x518
+#undef HACK_x519
+#undef HACK_x520
+#undef HACK_x521
+#undef HACK_x522
+#undef HACK_x523
+#undef HACK_x524
+#undef HACK_x525
+#undef HACK_x526
+#undef HACK_x527
+#undef HACK_x528
+#undef HACK_x529
+#undef HACK_x530
+#undef HACK_x531
+#undef HACK_x532
+#undef HACK_x533
+#undef HACK_x534
+#undef HACK_x535
+#undef HACK_x536
+#undef HACK_x537
+#undef HACK_x538
+#undef HACK_x539
+#undef HACK_x540
+#undef HACK_x541
+#undef HACK_x542
+#undef HACK_x543
+#undef HACK_x544
+#undef HACK_x545
+#undef HACK_x546
+#undef HACK_x547
+#undef HACK_x548
+#undef HACK_x549
+#undef HACK_x550
+#undef HACK_x551
+#undef HACK_x552
+#undef HACK_x553
+#undef HACK_x554
+#undef HACK_x555
+#undef HACK_x556
+#undef HACK_x557
+#undef HACK_x558
+#undef HACK_x559
+#undef HACK_x560
+#undef HACK_x561
+#undef HACK_x562
+#undef HACK_x563
+#undef HACK_x564
+#undef HACK_x565
+#undef HACK_x566
+#undef HACK_x567
+#undef HACK_x568
+#undef HACK_x569
+#undef HACK_x570
+#undef HACK_x571
+#undef HACK_x572
+#undef HACK_x573
+#undef HACK_x574
+#undef HACK_x575
+#undef HACK_x576
+#undef HACK_x577
+#undef HACK_x578
+#undef HACK_x579
+#undef HACK_x580
+#undef HACK_x581
+#undef HACK_x582
+#undef HACK_x583
+#undef HACK_x584
+#undef HACK_x585
+#undef HACK_x586
+#undef HACK_x587
+#undef HACK_x588
+#undef HACK_x589
+#undef HACK_x590
+#undef HACK_x591
+#undef HACK_x592
+#undef HACK_x593
+#undef HACK_x594
+#undef HACK_x595
+#undef HACK_x596
+#undef HACK_x597
+#undef HACK_x598
+#undef HACK_x599
+#undef HACK_x600
+#undef HACK_x601
+#undef HACK_x602
+#undef HACK_x603
+#undef HACK_x604
+#undef HACK_x605
+#undef HACK_x606
+#undef HACK_x607
+#undef HACK_x608
+#undef HACK_x609
+#undef HACK_x610
+#undef HACK_x611
+#undef HACK_x612
+#undef HACK_x613
+#undef HACK_x614
+#undef HACK_x615
+#undef HACK_x616
+#undef HACK_x617
+#undef HACK_x618
+#undef HACK_x619
+#undef HACK_x620
+#undef HACK_x621
+#undef HACK_x622
+#undef HACK_x623
+#undef HACK_x624
+#undef HACK_x625
+#undef HACK_x626
+#undef HACK_x627
+#undef HACK_x628
+#undef HACK_x629
+#undef HACK_x630
+#undef HACK_x631
+#undef HACK_x632
+#undef HACK_x633
+#undef HACK_x634
+#undef HACK_x635
+#undef HACK_x636
+#undef HACK_x637
+#undef HACK_x638
+#undef HACK_x639
+#undef HACK_x640
+#undef HACK_x641
+#undef HACK_x642
+#undef HACK_x643
+#undef HACK_x644
+#undef HACK_x645
+#undef HACK_x646
+#undef HACK_x647
+#undef HACK_x648
+#undef HACK_x649
+#undef HACK_x650
+#undef HACK_x651
+#undef HACK_x652
+#undef HACK_x653
+#undef HACK_x654
+#undef HACK_x655
+#undef HACK_x656
+#undef HACK_x657
+#undef HACK_x658
+#undef HACK_x659
+#undef HACK_x660
+#undef HACK_x661
+#undef HACK_x662
+#undef HACK_x663
+#undef HACK_x664
+#undef HACK_x665
+#undef HACK_x666
+#undef HACK_x667
+#undef HACK_x668
+#undef HACK_x669
+#undef HACK_x670
+#undef HACK_x671
+#undef HACK_x672
+#undef HACK_x673
+#undef HACK_x674
+#undef HACK_x675
+#undef HACK_x676
+#undef HACK_x677
+#undef HACK_x678
+#undef HACK_x679
+#undef HACK_x680
+#undef HACK_x681
+#undef HACK_x682
+#undef HACK_x683
+#undef HACK_x684
+#undef HACK_x685
+#undef HACK_x686
+#undef HACK_x687
+#undef HACK_x688
 }
 
 }
