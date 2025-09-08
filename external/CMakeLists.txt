@@ -33,6 +33,10 @@ if (NOT TARGET bill)
   endif()
 endif()
 
+if (NOT TARGET fmt)
+  add_subdirectory(fmt)
+endif()
+
 # kitty master branch: Oct.2020
 if (NOT TARGET kitty)
   add_library(kitty INTERFACE)
