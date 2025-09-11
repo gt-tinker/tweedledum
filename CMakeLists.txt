@@ -8,8 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # Options
 # =============================================================================
-option(TWEEDLEDUM_EXAMPLES "Build examples" OFF)
-option(TWEEDLEDUM_PYBINDS "Build python bindings" ON)
 option(TWEEDLEDUM_TESTS "Build tests" OFF)
 option(TWEEDLEDUM_USE_EXTERNAL_PYBIND11 "Use an external pybind11 library" OFF)
 option(TWEEDLEDUM_ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" OFF)
@@ -35,28 +33,6 @@ find_package(Eigen3 3.3 REQUIRED)
 find_package(nlohmann_json 3.9.0 REQUIRED)
 find_package(phmap 1.0.0 REQUIRED)
 add_subdirectory(external)
-
-# Python bindings
-# =============================================================================
-if(TWEEDLEDUM_PYBINDS AND TWEEDLEDUM_MASTER_PROJECT)
-    pybind11_add_module(_tweedledum MODULE)
-    target_include_directories(_tweedledum PRIVATE ${PROJECT_SOURCE_DIR}/include)
-    target_link_libraries(_tweedledum PRIVATE
-        Eigen3::Eigen3
-        fmt::fmt-header-only
-        mockturtle
-        $<$<CXX_COMPILER_ID:GNU>:stdc++fs>)
-    target_compile_options(_tweedledum PRIVATE
-        # clang/gcc warnings
-        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:GNU>>:
-        -W -Wall -Wextra>
-        # MSVC 
-        $<$<CXX_COMPILER_ID:MSVC>:/Wall /utf-8>)
-    add_subdirectory(python/tweedledum)
-    if(SKBUILD)
-        install(TARGETS _tweedledum LIBRARY DESTINATION tweedledum)
-    endif()
-endif()
 
 # Library
 # =============================================================================
@@ -94,12 +70,6 @@ install(DIRECTORY include/ ${tweedledum_exclude}
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 # install(EXPORT tweedledumConfig DESTINATION share/tweedledum/cmake)
 # export(TARGETS tweedledum mockturtle FILE tweedledumConfig.cmake)
-
-# Examples
-# =============================================================================
-if(TWEEDLEDUM_EXAMPLES AND NOT SKBUILD)
-  add_subdirectory(examples)
-endif()
 
 # Tests
 # =============================================================================
