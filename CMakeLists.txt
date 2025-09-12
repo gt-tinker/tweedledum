@@ -9,7 +9,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 # Options
 # =============================================================================
 option(TWEEDLEDUM_TESTS "Build tests" OFF)
-option(TWEEDLEDUM_USE_EXTERNAL_PYBIND11 "Use an external pybind11 library" OFF)
 option(TWEEDLEDUM_ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" OFF)
 option(ENABLE_BILL_Z3 "Enable Z3 interface for bill library" OFF)
 
