@@ -59,6 +59,13 @@ add_subdirectory(src)
 # Install
 # =============================================================================
 include(GNUInstallDirs)
+
+# CMake in unpredictable in its choice of where to install libs on Linux:
+# https://stackoverflow.com/a/76528304/321301. Let's make it predictable.
+if (CMAKE_INSTALL_LIBDIR STREQUAL "lib64")
+    set(CMAKE_INSTALL_LIBDIR "lib")
+endif()
+
 install(TARGETS tweedledum ${tweedledum_exclude}
     EXPORT tweedledumConfig
     ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
